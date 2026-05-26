@@ -6,10 +6,46 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Parcel;
 use App\Models\ParcelLog;
+use Validator, Auth;
 
 class AdminController extends Controller
 {
-   
+        /**
+     * logins in a user
+     *
+     * @param $request
+     *
+     * @return response/collectio
+     *
+     */
+    public function login(Request $request){
+
+        $validator = Validator::make($request->all(),
+            [
+                'email' => 'required|email',
+                'password' => 'required|min:6',
+            ]);
+
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator);
+        }
+
+        $credentials = ['email' => $request['email'],
+                        'password'=>$request['password'],
+                         'status'=>'active',
+                        
+                            ];
+     
+
+        if($user = Auth::attempt($credentials)){
+            
+          return redirect('/admin/dashboard');
+         
+        }else{
+            return redirect()->back()->with('error', 'Invalid user details');
+        }
+
+    }
 
 
     public function dashboard() {

@@ -759,7 +759,7 @@
             </button>
         </div>
         <nav class="drawer-nav" aria-label="Mobile links">
-            <a href="#" aria-current="page">
+            <a href="{{url('/')}}" aria-current="page">
                 <i class="fa-solid fa-house"></i>
                 <span data-i18n="nav_home">Home</span>
             </a>
@@ -771,19 +771,16 @@
                 <i class="fa-solid fa-boxes-stacked"></i>
                 <span data-i18n="nav_services">Services</span>
             </a>
-            <a href="#">
-                <i class="fa-solid fa-calculator"></i>
-                <span data-i18n="nav_rates">Rates</span>
-            </a>
-            <a href="#">
+         
+            <a href="{{url('/contact')}}">
                 <i class="fa-solid fa-envelope"></i>
                 <span data-i18n="nav_contact">Contact</span>
             </a>
             <div class="drawer-divider"></div>
-            <a href="#">
+            {{--<a href="{{url('/login')}}">
                 <i class="fa-solid fa-right-to-bracket"></i>
                 <span data-i18n="nav_login">Log In</span>
-            </a>
+            </a>--}}
         </nav>
         <div class="drawer-lang">
             <p data-i18n="select_lang">Language</p>

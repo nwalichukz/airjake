@@ -28,10 +28,16 @@ class TrackingController extends Controller
         return view('frontend.track', compact('parcel'));
     }
 
-    
+
 
     public function contact() {
         return view('frontend.contact');
+    }
+
+
+
+    public function login() {
+        return view('frontend.login');
     }
 
 

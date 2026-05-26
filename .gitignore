@@ -1,14 +1,14 @@
-*.log
-.DS_Store
+DS_Store
 .env
 .env.backup
 .env.production
 .phpactor.json
 public/hot
+!public/images
 public/storage
 storage/*.key
 vendor
-public
+/public/images
 .env
 .env.backup
 .phpunit.result.cache
