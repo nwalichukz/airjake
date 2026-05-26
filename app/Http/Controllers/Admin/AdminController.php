@@ -1,0 +1,81 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Parcel;
+use App\Models\ParcelLog;
+
+class AdminController extends Controller
+{
+   
+
+
+    public function dashboard() {
+        $parcels = Parcel::latest()->get();
+        return view('admin.dashboard', compact('parcels'));
+    }
+
+
+
+
+    public function store(Request $request) {
+        $data = $request->validate([
+            'sender_name' => 'required|string',
+            'receiver_name' => 'required|string',
+            'receiver_email' => 'required|email',
+            'delivery_address' => 'required|string',
+            'weight' => 'nullable|string',
+            'cost' => 'required|numeric',
+            'current_location' => 'required|string',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
+            'status_description' => 'nullable|string'
+        ]);
+
+        $parcel = Parcel::create($data);
+
+        ParcelLog::create([
+            'parcel_id' => $parcel->id,
+            'status' => 'Order Confirmed',
+            'location' => $parcel->current_location,
+            'description' => $request->status_description ?? 'Your shipment has been confirmed and is being processed.'
+        ]);
+
+        return redirect()->route('admin.dashboard')->with('success', 'Parcel created successfully. ID: ' . $parcel->tracking_id);
+    }
+
+
+
+
+    public function update(Request $request, Parcel $parcel) {
+        $request->validate([
+            'status' => 'required|string',
+            'current_location' => 'required|string',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
+            'status_description' => 'nullable|string'
+        ]);
+
+        $parcel->update($request->only(['status', 'current_location', 'latitude', 'longitude', 'status_description']));
+
+        ParcelLog::create([
+            'parcel_id' => $parcel->id,
+            'status' => $request->status,
+            'location' => $request->current_location,
+            'description' => $request->status_description
+        ]);
+
+        return redirect()->back()->with('success', 'Parcel transit checkpoint updated updated successfully.');
+    }
+
+
+
+
+    public function receipt(Parcel $parcel) {
+        return view('admin.receipt', compact('parcel'));
+    }
+
+
+}
