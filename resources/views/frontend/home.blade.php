@@ -743,7 +743,7 @@
                 Inspect custom transit manifests, border clearance nodes, and route vectors instantly through our priority verification terminal.
             </p>
 
-            <div class="aj-pills">
+            <div class="aj-pills" >
                 <span class="aj-pill"><i class="fa-solid fa-circle-check fa-xs"></i> 150+ Countries</span>
                 <span class="aj-pill"><i class="fa-solid fa-circle-check fa-xs"></i> Real-Time Updates</span>
                 <span class="aj-pill"><i class="fa-solid fa-circle-check fa-xs"></i> End-to-End Secure</span>
@@ -758,7 +758,7 @@
                     <span>Enter tracking ID to locate your shipment</span>
                     <div class="aj-card-divider-line"></div>
                 </div>
-                <form action="{{ url('tracking.show') }}" method="GET" class="aj-form" id="heroForm">
+                <form action="{{ url('tracking/show') }}" method="POST" class="aj-form" id="heroForm">
                     @csrf
                     <div class="aj-input-wrap" id="heroInputWrap">
                         <i class="fa-solid fa-magnifying-glass-location aj-input-ico"></i>
@@ -820,7 +820,7 @@
     {{-- ══════════════════════════
          IMAGE SHOWCASE STRIP
     ══════════════════════════ --}}
-    <section class="aj-showcase" aria-label="Our operations">
+    <section class="aj-showcase" aria-label="Our operations" id="serviceID">
         <div class="aj-showcase-inner">
 
             <div class="aj-section-head">

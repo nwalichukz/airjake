@@ -624,7 +624,7 @@
                         Fill in the form below and our team will respond to your enquiry as soon as possible, usually within 24 hours.
                     </p>
 
-                    <form class="cj-form" id="contactForm" action="{{ route('contact.send') }}" method="POST" novalidate>
+                    <form class="cj-form" id="contactForm" action="{{ url('contact/send') }}" method="POST" novalidate>
                         @csrf
 
                         <div class="cj-row">

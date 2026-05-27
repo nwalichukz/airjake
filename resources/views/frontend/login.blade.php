@@ -546,10 +546,12 @@
         <div class="aj-brand-icon">
           <i class="fa-solid fa-terminal"></i>
         </div>
+        <a href="{{url('/')}}">
         <div class="aj-brand-name">
           AIR JAKE
           <span>Delivery Services</span>
         </div>
+      </a>
       </div>
 
       <!-- Badge -->
@@ -589,7 +591,7 @@
             Enter your credentials to access the terminal. All sessions are encrypted and monitored.
           </p>
 
-          <form class="a-form" id="loginForm" action="{{ url('admin/login')}}" method="POST" novalidate>
+          <form class="a-form" id="loginFor" action="{{ url('admin/login')}}" method="POST" novalidate>
             <!-- CSRF token placeholder for Laravel -->
                @csrf 
 
@@ -654,7 +656,7 @@
             </div>
 
             <!-- Submit -->
-            <button type="submit" class="aj-submit" id="loginSubmit">
+            <button type="submit" class="aj-submit" id="loginSubmi">
               <i class="fa-solid fa-arrow-right-to-bracket"></i>
               <span>Sign In to Terminal</span>
             </button>

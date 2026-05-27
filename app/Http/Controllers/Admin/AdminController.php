@@ -19,6 +19,7 @@ class AdminController extends Controller
      *
      */
     public function login(Request $request){
+         return $request->all();
 
         $validator = Validator::make($request->all(),
             [

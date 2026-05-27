@@ -686,7 +686,7 @@
     <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-inner">
             <!-- Logo -->
-            <a href="#" class="nav-logo" aria-label="Air Jake Delivery Services - Home">
+            <a href="{{url('/')}}" class="nav-logo" aria-label="Air Jake Delivery Services - Home">
                 <div class="logo-icon" aria-hidden="true">
                     <i class="fa-solid fa-plane-departure"></i>
                 </div>
@@ -698,23 +698,20 @@
 
             <!-- Desktop Links -->
             <ul class="nav-links" role="list">
-                <li><a href="#" class="active" aria-current="page">
+                <li><a href="{{url('/')}}" class="active" aria-current="page">
                     <i class="fa-solid fa-house" aria-hidden="true"></i>
                     <span data-i18n="nav_home">Home</span>
                 </a></li>
-                <li><a href="#">
+                <li><a href="#trackID">
                     <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
                     <span data-i18n="nav_tracking">Track Parcel</span>
                 </a></li>
-                <li><a href="#">
+                <li><a href="#serviceID">
                     <i class="fa-solid fa-boxes-stacked" aria-hidden="true"></i>
                     <span data-i18n="nav_services">Services</span>
                 </a></li>
-                <li><a href="#">
-                    <i class="fa-solid fa-calculator" aria-hidden="true"></i>
-                    <span data-i18n="nav_rates">Rates</span>
-                </a></li>
-                <li><a href="#">
+               
+                <li><a href="{{url('/contact')}}">
                     <i class="fa-solid fa-envelope" aria-hidden="true"></i>
                     <span data-i18n="nav_contact">Contact</span>
                 </a></li>
@@ -722,14 +719,17 @@
 
             <!-- Desktop CTA -->
             <div class="nav-cta">
-                <a href="#" class="btn-secondary">
+                @if(!Auth::check())
+                <a href="{{url('/login')}}" class="btn-secondary">
                     <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
                     <span data-i18n="nav_login">Log In</span>
                 </a>
+                @else
                 <a href="#" class="btn-primary">
                     <i class="fa-solid fa-gauge-high" aria-hidden="true"></i>
                     <span data-i18n="nav_dashboard">Admin Portal</span>
                 </a>
+                @endif
             </div>
 
             <!-- Hamburger -->
@@ -763,11 +763,11 @@
                 <i class="fa-solid fa-house"></i>
                 <span data-i18n="nav_home">Home</span>
             </a>
-            <a href="#">
+            <a href="#trackID">
                 <i class="fa-solid fa-location-dot"></i>
                 <span data-i18n="nav_tracking">Track Parcel</span>
             </a>
-            <a href="#">
+            <a href="#serviceID">
                 <i class="fa-solid fa-boxes-stacked"></i>
                 <span data-i18n="nav_services">Services</span>
             </a>
@@ -777,10 +777,12 @@
                 <span data-i18n="nav_contact">Contact</span>
             </a>
             <div class="drawer-divider"></div>
-            {{--<a href="{{url('/login')}}">
+            @if(!Auth::check())
+            <a href="{{url('/login')}}">
                 <i class="fa-solid fa-right-to-bracket"></i>
                 <span data-i18n="nav_login">Log In</span>
-            </a>--}}
+            </a>
+            @endif
         </nav>
         <div class="drawer-lang">
             <p data-i18n="select_lang">Language</p>
@@ -797,10 +799,13 @@
             </div>
         </div>
         <div class="drawer-actions">
+            @if(Auth::check())
             <a href="#" class="btn-primary" style="justify-content:center;">
                 <i class="fa-solid fa-gauge-high"></i>
-                <span data-i18n="nav_dashboard">Admin Portal</span>
+                <span data-i18n="nav_dashboard">
+                Admin Portal</span>
             </a>
+            @endif
         </div>
     </aside>
 
