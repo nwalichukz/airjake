@@ -747,7 +747,7 @@
             </div>
             <div class="card-body">
               <div class="form-grid">
-                <form method="POST" action="{{route('/store')}}">
+                <form method="POST" action="{{url('/parcel/store')}}">
                    @csrf 
                 <div class="field">
                   <label>Sender Identity</label>

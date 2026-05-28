@@ -725,7 +725,7 @@
                     <span data-i18n="nav_login">Log In</span>
                 </a>
                 @else
-                <a href="#" class="btn-primary">
+                <a href="{{url('/admin/dashboard')}}" class="btn-primary">
                     <i class="fa-solid fa-gauge-high" aria-hidden="true"></i>
                     <span data-i18n="nav_dashboard">Admin Portal</span>
                 </a>
@@ -800,7 +800,7 @@
         </div>
         <div class="drawer-actions">
             @if(Auth::check())
-            <a href="#" class="btn-primary" style="justify-content:center;">
+            <a href="{{url('/admin/dashboard')}}" class="btn-primary" style="justify-content:center;">
                 <i class="fa-solid fa-gauge-high"></i>
                 <span data-i18n="nav_dashboard">
                 Admin Portal</span>

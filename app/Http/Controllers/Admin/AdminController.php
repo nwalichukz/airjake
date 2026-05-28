@@ -50,8 +50,12 @@ class AdminController extends Controller
 
 
     public function dashboard() {
+        if(Auth::check()){
         $parcels = Parcel::latest()->get();
         return view('admin.dashboard', compact('parcels'));
+    }else{
+        return redirect('/login');
+    }
     }
 
 

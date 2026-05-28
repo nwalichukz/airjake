@@ -12,7 +12,7 @@ Route::get('/contact', [TrackingController::class, 'contact'])->name('contact');
 
 Route::get('/login', [TrackingController::class, 'login'])->name('login');
 
- Route::post('/parcel/store', [AdminController::class, 'store'])->name('store');
+ Route::post('/parcel/store', [AdminController::class, 'store']);
 
 Route::post('/post/login', [AdminController::class, 'login']);
 
