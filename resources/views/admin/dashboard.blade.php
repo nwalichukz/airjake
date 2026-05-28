@@ -841,6 +841,8 @@
           <div class="table-wrap">
             <table>
               <thead>
+
+
                 <tr>
                   <th>Tracking Code</th>
                   <th>Consignee</th>
@@ -849,20 +851,21 @@
                 </tr>
               </thead>
               <tbody>
+                @foreach($parcels as $parcel)
                 <tr>
-                  <td><span class="tracking-code">AJD-LN-49210-PH</span></td>
+                  <td><span class="tracking-code">{{$parcel->tracking_id}}</span></td>
                   <td>
-                    <div class="consignee-name">Jane Winters</div>
-                    <div class="consignee-meta">Lagos, NG</div>
+                    <div class="consignee-name">{{$parcel->sender_name}}</div>
+                    <div class="consignee-meta">{{$parcel->delivery_address}}</div>
                   </td>
                   <td>
                     <span class="badge badge-amber">
-                      <span class="dot"></span> Custom Hold
+                      <span class="dot"></span> {{$parcel->status}}
                     </span>
                   </td>
                   <td>
                     <div class="actions-col">
-                        <a href="{{url('/admin/parcel-receipt/1')}}">
+                        <a href="{{url('/admin/parcel-receipt/'.$parcel->id)}}">
                       <button class="btn-sm btn-ghost">
                         <i class="fa-solid fa-receipt" style="color:var(--accent)"></i> Invoice</button>
                           </a>
@@ -872,6 +875,7 @@
                     </div>
                   </td>
                 </tr>
+                @endforeach
                 {{--<tr>
                   <td><span class="tracking-code">AJD-AB-30021-US</span></td>
                   <td>

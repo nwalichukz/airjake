@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Waybill Receipt — AJD-LN-49210-PH · Air Jake</title>
+  <title>Waybill Receipt — {{$parcel->tracking_id}} · Air Jake Delivery</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -787,7 +787,7 @@
           <div class="receipt-tracking-wrap">
             <div class="receipt-tracking-label">Tracking Reference</div>
             <div class="receipt-tracking-code">
-              <span>AJD-LN-49210-PH</span>
+              <span>{{$parcel->tracking_id}}</span>
               <button class="receipt-tracking-copy no-print" onclick="copyTracking()" title="Copy tracking ID">
                 <i class="fa-regular fa-copy"></i>
               </button>
@@ -800,12 +800,12 @@
       <div class="receipt-status-strip">
         <span class="status-chip amber">
           <span class="sdot"></span>
-          Custom Hold
+         {{$parcel->status}}
         </span>
         <span style="font-size:0.62rem; font-weight:600; color:rgba(255,255,255,0.3);">
-          Last updated: Mar 13, 2026 · 06:26 AM
+          Last updated: {{ date('d M, Y h:i A') }}
         </span>
-        <span class="strip-meta no-print">Receipt #INV-2026-0049210</span>
+        <span class="strip-meta no-print">Receipt {{$parcel->tracking_id}}</span>
       </div>
 
       <!-- ── Body ── -->
@@ -831,11 +831,11 @@
               <i class="fa-solid fa-location-dot"></i>
               Consignee / Destination
             </div>
-            <div class="party-name">Jane Winters</div>
-            <div class="party-email">j.winters@domain.com</div>
+            <div class="party-name">{{$parcel->receiver_name}}</div>
+            <div class="party-email">{{$parcel->receiver_email}}</div>
             <div class="party-detail" style="margin-top:6px;">
-              <span class="highlight">Drop Vector: </span>
-              Manila Port Entry Cargo Complex, Philippines
+              <span class="highlight">Drop Address: </span>
+              {{$parcel->delivery_address}}
             </div>
           </div>
         </div>
@@ -861,10 +861,10 @@
                 <div class="item-desc">Includes real-time multi-node tracking updates, satellite coordinate positioning, and custom border clearance indicators.</div>
               </td>
               <td>
-                <div class="item-weight">42.80 KG</div>
+                <div class="item-weight">{{$parcel->weight}} KG</div>
               </td>
               <td>
-                <div class="item-amount">$1,450.00</div>
+                <div class="item-amount">$ {{$parcel->cost}}</div>
               </td>
             </tr>
             <tr>
@@ -886,7 +886,7 @@
         <div class="totals-wrap">
           <div class="totals-row">
             <span class="t-label">Subtotal</span>
-            <span class="t-value">$1,450.00</span>
+            <span class="t-value">${{$parcel->cost}}</span>
           </div>
           <div class="totals-row">
             <span class="t-label">Tax / VAT</span>
@@ -894,7 +894,7 @@
           </div>
           <div class="totals-row total-final">
             <span class="t-label">Total Charged</span>
-            <span class="t-value">$1,450.00</span>
+            <span class="t-value">${{$parcel->cost}}</span>
           </div>
         </div>
 
@@ -917,8 +917,8 @@
       <div class="receipt-footer">
         <div class="receipt-footer-brand">AIR <span>JAKE</span></div>
         <div class="receipt-footer-meta">
-          Generated: May 27, 2026<br>
-          Receipt #INV-2026-0049210
+          Generated: {{ date('d M, Y h:i A') }}<br>
+          Receipt {{$parcel->tracking_id}}
         </div>
       </div>
 

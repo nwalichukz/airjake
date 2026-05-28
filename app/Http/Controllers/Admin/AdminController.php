@@ -39,8 +39,9 @@ class AdminController extends Controller
      
 
         if($user = Auth::attempt($credentials)){
+            //$parcels = Parcel::latest()->get();
             
-          return view('/admin/dashboard');
+          return redirect('/admin/dashboard');
          
         }else{
             return redirect()->back()->with('error', 'Invalid user details');
@@ -115,6 +116,8 @@ class AdminController extends Controller
 
 
     public function receipt(Parcel $parcel) {
+         $parcel = Parcel::where('id', $parcel)->first();
+         dd($parcel);
         return view('admin.receipt', compact('parcel'));
     }
 
