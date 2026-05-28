@@ -934,7 +934,7 @@
       <div class="modal-sub">Send this waybill to the consignee or save a copy.</div>
 
       <div class="share-url-wrap">
-        <input class="share-url" id="shareUrl" type="text" readonly value="https://airjakedeliveryservice.com/track/AJD-LN-49210-PH">
+        <input class="share-url" id="shareUrl" type="text" readonly value="{{url('/admin/parcel-receipt/'.$parcel->id)}}">
         <button class="share-copy-btn" onclick="copyShareUrl()">Copy Link</button>
       </div>
 

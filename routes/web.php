@@ -28,5 +28,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/parcel-update/{parcel}', [AdminController::class, 'update']);
 
     
-    Route::get('/parcel-receipt/{parcel_id?}', [AdminController::class, 'receipt']);
+   
 });
+
+ Route::get('/admin/parcel-receipt/{id?}', [AdminController::class, 'receipt']);

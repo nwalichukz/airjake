@@ -85,7 +85,7 @@ class AdminController extends Controller
             'description' => $request->status_description ?? 'Your shipment has been confirmed and is being processed.'
         ]);
 
-        return redirect('/parcel-receipt/'.$parcel->id);
+        return redirect('/admin/parcel-receipt/'.$parcel->id);
         //->back()->with('success', 'Parcel created successfully. ID: ' . $parcel->tracking_id);
     }
 
@@ -116,9 +116,9 @@ class AdminController extends Controller
 
 
 
-    public function receipt(Parcel $parcel) {
-         $parcel = Parcel::where('id', $parcel)->first();
-         dd($parcel);
+    public function receipt($id) {
+        // $parcel = Parcel::where('id', $parcel)->first();
+          $parcel = Parcel::findOrFail($id);
         return view('admin.receipt', compact('parcel'));
     }
 
