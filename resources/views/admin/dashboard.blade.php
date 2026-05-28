@@ -750,8 +750,28 @@
                 <form method="POST" action="{{url('/parcel/store')}}">
                    @csrf 
                 <div class="field">
-                  <label>Sender Identity</label>
+                  <label>Sender Name</label>
                   <input type="text" name="sender_name" placeholder="e.g. Global Electronics Inc." required>
+                </div>
+
+                  <div class="field">
+                  <label>Sender Phone</label>
+                  <input type="text" name="sender_phone" placeholder="e.g. +123567890" required>
+                </div>
+
+                  <div class="field">
+                  <label>Sender Location</label>
+                  <input type="text" name="sender_location" placeholder="e.g. Maine, USA." required>
+                </div>
+
+                  <div class="field">
+                  <label>Sender Email</label>
+                  <input type="email" name="sender_email" placeholder="e.g. kateberry@aol.com" required>
+                </div>
+
+                  <div class="field">
+                  <label>Sender Address</label>
+                  <input type="text" name="sender_address" placeholder="e.g. 23 highbrew, Florida, USA" required>
                 </div>
 
 
@@ -768,10 +788,21 @@
                   </div>
                 </div>
 
+                <div class="field">
+                    <label>Receiver Phone</label>
+                    <input type="number" name="receiver_phone" placeholder="+1234567898" required>
+                  </div>
+                </div>
+
 
                 <div class="field">
-                  <label>Delivery Destination</label>
-                  <input type="text" name="delivery_address" placeholder="City, Country, ZIP" required>
+                  <label>Receiver Address</label>
+                  <input type="text" name="receiver_address" placeholder="City, Country, ZIP" required>
+                </div>
+
+                   <div class="field">
+                  <label>No Days to Reach Destination</label>
+                  <input type="number" name="no_of_delivery_days" placeholder="7" required>
                 </div>
 
 
@@ -799,11 +830,11 @@
                     </div>
                     <div class="field">
                       <label>Latitude</label>
-                      <input type="number" name="latitude" class="mono" step="0.000001" required>
+                      <input type="number" name="latitude" class="mono">
                     </div>
                     <div class="field">
                       <label>Longitude</label>
-                      <input type="number" name="longitude" class="mono" step="0.000001" required>
+                      <input type="number" name="longitude" class="mono" >
                     </div>
                   </div>
                 </div>

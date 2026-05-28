@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Parcel;
 use App\Models\ParcelLog;
 use Validator, Auth;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -65,18 +66,42 @@ class AdminController extends Controller
     public function store(Request $request) {
         $data = $request->validate([
             'sender_name' => 'required|string',
+             'sender_email' => 'required|email',
+             'sender_phone' => 'required|string',
+             'sender_address' => 'required|string',
+             'sender_location' => 'required|string',
             'receiver_name' => 'required|string',
+            'receiver_phone' => 'required|string',
             'receiver_email' => 'required|email',
-            'delivery_address' => 'required|string',
+            'receiver_address' => 'required|string',
             'weight' => 'nullable|string',
             'cost' => 'required|numeric',
             'current_location' => 'required|string',
-            'latitude' => 'required|numeric',
-            'longitude' => 'required|numeric',
+            'latitude'=> 'nullable|numeric|between:-90,90',  
+            'longitude'=> 'nullable|numeric|between:-180,180',
             'status_description' => 'nullable|string'
         ]);
 
-        $parcel = Parcel::create($data);
+        
+        $parcel = new Parcel;
+        $parcel->sender_name = $request['sender_name'];
+        $parcel->sender_email = $request['sender_email'];
+        $parcel->sender_phone = $request['sender_phone'];
+        $parcel->sender_address = $request['sender_address'];
+        $parcel->sender_location = $request['sender_location'];
+        $parcel->receiver_name = $request['receiver_name'];
+        $parcel->receiver_phone = $request['receiver_phone'];
+        $parcel->receiver_email = $request['receiver_email'];
+        $parcel->receiver_address = $request['receiver_address'];
+        $parcel->weight = $request['weight'];
+        $parcel->cost = $request['cost'];
+        $parcel->current_location = $request['current_location'];
+        $parcel->latitude = $request['latitude'];
+        $parcel->longitude = $request['longitude'];
+        $parcel->status_description = $request['status_description'];
+        $parcel->expected_arrival_date = Carbon::now()->addDays((int)$request['no_of_delivery_days']);
+        $parcel->save();
+      
 
         ParcelLog::create([
             'parcel_id' => $parcel->id,

@@ -15,15 +15,21 @@ return new class extends Migration
             $table->id();
             $table->string('tracking_id')->unique()->nullable();
             $table->string('sender_name');
+            $table->string('sender_location');
+            $table->string('sender_phone');
+            $table->string('sender_email');
+            $table->string('sender_address');
             $table->string('receiver_name');
             $table->string('receiver_email');
-            $table->text('delivery_address');
+            $table->text('receiver_address');
+            $table->string('receiver_phone');
+            $table->timestamp('expected_arrival_date');
             $table->string('weight')->nullable();
             $table->decimal('cost', 10, 2);
             $table->string('status')->default('Order Confirmed'); // Order Confirmed, Picked by Courier, On The Way, Custom Hold, Delivered
             $table->string('current_location')->nullable();
-            $table->decimal('latitude', 10, 7)->default(14.5995); // Default to Manila, Philippines map center
-            $table->decimal('longitude', 10, 7)->default(120.9842);
+            $table->decimal('latitude', 10, 7)->nullable(); // Default to Manila, Philippines map center
+            $table->decimal('longitude', 10, 7)->nullable();
             $table->text('status_description')->nullable();
             $table->timestamps();
         });
