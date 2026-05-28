@@ -85,7 +85,8 @@ class AdminController extends Controller
             'description' => $request->status_description ?? 'Your shipment has been confirmed and is being processed.'
         ]);
 
-        return redirect()->back()->with('success', 'Parcel created successfully. ID: ' . $parcel->tracking_id);
+        return redirect('/parcel-receipt/'.$parcel->id);
+        //->back()->with('success', 'Parcel created successfully. ID: ' . $parcel->tracking_id);
     }
 
 
