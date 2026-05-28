@@ -22,10 +22,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
  //  Route::post('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+
+
+   Route::get('/get-parcel-update/{id}', [AdminController::class, 'parcelEditPage']);
    
    
    
-    Route::post('/parcel-update/{parcel}', [AdminController::class, 'update']);
+    Route::post('/parcel-update', [AdminController::class, 'update']);
 
     
    

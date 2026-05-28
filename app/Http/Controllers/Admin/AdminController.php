@@ -148,4 +148,15 @@ class AdminController extends Controller
     }
 
 
+     public function parcelEditPage($id) {
+        if(Auth::check()){
+        // $parcel = Parcel::where('id', $parcel)->first();
+         $parcel = Parcel::with('logs')->findOrFail($id);
+        return view('admin.edit-parcel', compact('parcel'));
+    }else{
+        return redirect('/');
+    }
+    }
+
+
 }

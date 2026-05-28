@@ -19,7 +19,7 @@ class TrackingController extends Controller
     public function track(Request $request) {
         $request->validate(['tracking_id' => 'required|string']);
         
-        $parcel = Parcel::where('tracking_id', $request->tracking_id)->first();
+        $parcel = Parcel::where('tracking_id', $request->tracking_id)->with('logs')->first();
         
         if (!$parcel) {
             // return view('frontend.track', compact('parcel'));

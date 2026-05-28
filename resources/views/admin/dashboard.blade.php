@@ -900,9 +900,10 @@
                       <button class="btn-sm btn-ghost">
                         <i class="fa-solid fa-receipt" style="color:var(--accent)"></i> Invoice</button>
                           </a>
-                     
+                     <a href="{{url('admin/get-parcel-update/'.$parcel->id)}}"
                      <button class="btn-sm btn-danger">
                         <i class="fa-solid fa-route"></i> Shift Checkpoint</button>
+
                     </div>
                   </td>
                 </tr>

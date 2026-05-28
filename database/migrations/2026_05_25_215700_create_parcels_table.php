@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('receiver_phone');
             $table->timestamp('expected_arrival_date');
             $table->string('weight')->nullable();
+             $table->string('percentage_flow')->nullable();
             $table->decimal('cost', 10, 2);
             $table->string('status')->default('Order Confirmed'); // Order Confirmed, Picked by Courier, On The Way, Custom Hold, Delivered
             $table->string('current_location')->nullable();

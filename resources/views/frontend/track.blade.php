@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Air Jake Delivery Services— Shipment Tracking</title>
+  <title>Air Jake Delivery Services — Shipment Tracking</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -668,7 +668,7 @@
           </div>
           <div>
             <div class="tk-waybill-label">Waybill Token</div>
-            <div class="tk-waybill-code">AJD-LN-49210-PH</div>
+            <div class="tk-waybill-code">{{$parcel->tracking_id}}</div>
           </div>
         </div>
 
@@ -677,18 +677,18 @@
             <div class="tk-meta-label">Current Phase</div>
             <div class="tk-status-chip amber">
               <div class="live-dot"></div>
-              Custom Hold
+              {{$parcel->status}}
             </div>
           </div>
           <div class="tk-meta-item">
             <div class="tk-meta-label">Weight</div>
-            <div class="tk-meta-value mono">42.80 KG</div>
+            <div class="tk-meta-value mono">{{$parcel->weight}} KG</div>
           </div>
           <div class="tk-meta-item">
             <div class="tk-meta-label">Destination</div>
             <div class="tk-meta-value">
               <i class="fa-solid fa-location-dot" style="color:var(--red); margin-right:4px; font-size:0.75rem;"></i>
-              Manila, PH
+             {{$parcel->receiver_address}}
             </div>
           </div>
         </div>
@@ -719,7 +719,7 @@
             <i class="fa-solid fa-circle-check" style="font-size:17px;"></i>
           </div>
           <div class="tk-step-name">Order<br>Confirmed</div>
-          <div class="tk-step-date">Mar 10</div>
+          <div class="tk-step-date">{{$parcel->created_at->format('M d, Y H:i A')}}</div>
         </div>
 
         <div class="tk-step done">
@@ -727,7 +727,7 @@
             <i class="fa-solid fa-truck-ramp-box" style="font-size:16px;"></i>
           </div>
           <div class="tk-step-name">Picked by<br>Courier</div>
-          <div class="tk-step-date">Mar 12</div>
+          <div class="tk-step-date">Pending</div>
         </div>
 
         <div class="tk-step done">
@@ -735,7 +735,7 @@
             <i class="fa-solid fa-plane-departure" style="font-size:15px;"></i>
           </div>
           <div class="tk-step-name">On the<br>Way</div>
-          <div class="tk-step-date">Mar 12</div>
+          <div class="tk-step-date">Pending</div>
         </div>
 
         <div class="tk-step active">
@@ -743,7 +743,7 @@
             <i class="fa-solid fa-building-shield" style="font-size:16px;"></i>
           </div>
           <div class="tk-step-name">Custom<br>Hold</div>
-          <div class="tk-step-date">Mar 13</div>
+          <div class="tk-step-date">Pending</div>
         </div>
 
         <div class="tk-step pending">
