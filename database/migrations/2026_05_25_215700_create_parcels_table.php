@@ -13,6 +13,18 @@ return new class extends Migration
     {
         Schema::create('parcels', function (Blueprint $table) {
             $table->id();
+            $table->string('tracking_id')->unique()->nullable();
+            $table->string('sender_name');
+            $table->string('receiver_name');
+            $table->string('receiver_email');
+            $table->text('delivery_address');
+            $table->string('weight')->nullable();
+            $table->decimal('cost', 10, 2);
+            $table->string('status')->default('Order Confirmed'); // Order Confirmed, Picked by Courier, On The Way, Custom Hold, Delivered
+            $table->string('current_location')->nullable();
+            $table->decimal('latitude', 10, 7)->default(14.5995); // Default to Manila, Philippines map center
+            $table->decimal('longitude', 10, 7)->default(120.9842);
+            $table->text('status_description')->nullable();
             $table->timestamps();
         });
     }

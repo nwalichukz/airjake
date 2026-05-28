@@ -758,7 +758,7 @@
                     <span>Enter tracking ID to locate your shipment</span>
                     <div class="aj-card-divider-line"></div>
                 </div>
-                <form action="{{ url('tracking/show') }}" method="POST" class="aj-form" id="heroForm">
+                <form action="{{ url('track') }}" method="POST" class="aj-form" id="heroForm">
                     @csrf
                     <div class="aj-input-wrap" id="heroInputWrap">
                         <i class="fa-solid fa-magnifying-glass-location aj-input-ico"></i>

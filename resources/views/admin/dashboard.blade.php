@@ -646,7 +646,7 @@
   </header>
 
   <!-- ── MOBILE DRAWER ── -->
-  <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+  <div class="drawer-overlay" id="drawerOverlay" o nclick="closeDrawer()"></div>
   <div class="drawer" id="drawer">
     <div class="drawer-header">
       <div class="topbar-brand">
@@ -747,38 +747,44 @@
             </div>
             <div class="card-body">
               <div class="form-grid">
-
+                <form method="POST" action="{{route('/store')}}">
+                   @csrf 
                 <div class="field">
                   <label>Sender Identity</label>
-                  <input type="text" placeholder="e.g. Global Electronics Inc.">
+                  <input type="text" name="sender_name" placeholder="e.g. Global Electronics Inc." required>
                 </div>
+
 
                 <div class="form-row">
                   <div class="field">
                     <label>Receiver Name</label>
-                    <input type="text" placeholder="Full name">
+                    <input type="text" name="receiver_name" placeholder="Full name" required>
                   </div>
+
+
                   <div class="field">
                     <label>Receiver Email</label>
-                    <input type="email" placeholder="email@domain.com">
+                    <input type="email" name="receiver_email" placeholder="email@domain.com" required>
                   </div>
                 </div>
 
+
                 <div class="field">
                   <label>Delivery Destination</label>
-                  <input type="text" placeholder="City, Country, ZIP">
+                  <input type="text" name="delivery_address" placeholder="City, Country, ZIP" required>
                 </div>
+
 
                 <div class="form-row">
                   <div class="field">
                     <label>Weight (KG)</label>
-                    <input type="text" placeholder="14.50">
+                    <input type="text" name="weight" placeholder="14.50" required>
                   </div>
                   <div class="field">
-                    <label>Tariff Charge ($)</label>
-                    <input type="number" step="0.01" placeholder="0.00">
+                    <label>Cost ($)</label>
+                    <input type="number" name="cost" step="0.01" placeholder="0.00" required>
                   </div>
-                </div>
+                </div>   
 
                 <hr class="divider">
 
@@ -788,27 +794,31 @@
                   </div>
                   <div class="coords-grid">
                     <div class="field">
-                      <label>Node Name</label>
-                      <input type="text" class="mono" placeholder="MANILA, PH">
+                      <label>Current Location</label>
+                      <input type="text" name="current_location" class="mono" placeholder="MANILA, PH" required>
                     </div>
                     <div class="field">
                       <label>Latitude</label>
-                      <input type="number" class="mono" step="0.000001" value="14.599512">
+                      <input type="number" name="latitude" class="mono" step="0.000001" required>
                     </div>
                     <div class="field">
                       <label>Longitude</label>
-                      <input type="number" class="mono" step="0.000001" value="120.984222">
+                      <input type="number" name="longitude" class="mono" step="0.000001" required>
                     </div>
                   </div>
                 </div>
 
-                <button class="btn-primary">
-                  <i class="fa-solid fa-print"></i> Commit & Print Waybill
+                <button type="submit" class="btn-primary">
+                  <i class="fa-solid fa-print"></i>
+                   Commit & Print Waybill
                 </button>
-
+                   </form>
               </div>
+
             </div>
           </div>
+
+       
 
           <!-- Ledger (shown alongside on desktop) -->
           <div class="card" id="ledger" style="display:none;" class="desktop-ledger">
@@ -852,12 +862,17 @@
                   </td>
                   <td>
                     <div class="actions-col">
-                      <button class="btn-sm btn-ghost"><i class="fa-solid fa-receipt" style="color:var(--accent)"></i> Invoice</button>
-                      <button class="btn-sm btn-danger"><i class="fa-solid fa-route"></i> Shift Checkpoint</button>
+                        <a href="{{url('/admin/parcel-receipt/1')}}">
+                      <button class="btn-sm btn-ghost">
+                        <i class="fa-solid fa-receipt" style="color:var(--accent)"></i> Invoice</button>
+                          </a>
+                     
+                     <button class="btn-sm btn-danger">
+                        <i class="fa-solid fa-route"></i> Shift Checkpoint</button>
                     </div>
                   </td>
                 </tr>
-                <tr>
+                {{--<tr>
                   <td><span class="tracking-code">AJD-AB-30021-US</span></td>
                   <td>
                     <div class="consignee-name">Marco Rivera</div>
@@ -892,7 +907,7 @@
                       <button class="btn-sm btn-danger"><i class="fa-solid fa-route"></i> Shift Checkpoint</button>
                     </div>
                   </td>
-                </tr>
+                </tr>--}}
               </tbody>
             </table>
           </div>

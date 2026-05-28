@@ -591,7 +591,7 @@
             Enter your credentials to access the terminal. All sessions are encrypted and monitored.
           </p>
 
-          <form class="a-form" id="loginFor" action="{{ url('admin/login')}}" method="POST" novalidate>
+          <form class="a-form" id="loginFor" action="{{ url('post/login')}}" method="POST" novalidate>
             <!-- CSRF token placeholder for Laravel -->
                @csrf 
 

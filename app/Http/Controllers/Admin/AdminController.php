@@ -19,7 +19,7 @@ class AdminController extends Controller
      *
      */
     public function login(Request $request){
-         return $request->all();
+         //return $request->all();
 
         $validator = Validator::make($request->all(),
             [
@@ -40,7 +40,7 @@ class AdminController extends Controller
 
         if($user = Auth::attempt($credentials)){
             
-          return redirect('/admin/dashboard');
+          return view('/admin/dashboard');
          
         }else{
             return redirect()->back()->with('error', 'Invalid user details');
@@ -80,7 +80,7 @@ class AdminController extends Controller
             'description' => $request->status_description ?? 'Your shipment has been confirmed and is being processed.'
         ]);
 
-        return redirect()->route('admin.dashboard')->with('success', 'Parcel created successfully. ID: ' . $parcel->tracking_id);
+        return redirect()->back()->with('success', 'Parcel created successfully. ID: ' . $parcel->tracking_id);
     }
 
 
