@@ -648,7 +648,7 @@
           <div class="tk-brand-name">AIR JAKE</div>
           <span class="tk-brand-sub">Delivery Services</span>
         </div>
-        
+
       </a>
       <div class="tk-live-badge">
         <div class="live-dot"></div>
@@ -736,7 +736,7 @@
             @if($order->status == 'Order Picked Up')
              {{$order->created_at->format('M d, Y H:i A')}}
              @else
-             Pending
+             
              @endif
           
            @endforeach
