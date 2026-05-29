@@ -73,6 +73,11 @@
       justify-content: space-between;
       gap: 12px;
     }
+    .tk-brand-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
     .tk-brand {
       display: flex;
       align-items: center;
@@ -134,6 +139,37 @@
     @keyframes pulseDot {
       0%,100%{ opacity:1; transform:scale(1); }
       50%{ opacity:.35; transform:scale(.55); }
+    }
+
+    /* Google Translate Styling Customizations */
+    .tk-translate-wrapper {
+      display: flex;
+      align-items: center;
+    }
+    .goog-te-gadget {
+      font-family: var(--font-b) !important;
+      color: transparent !important;
+    }
+    .goog-te-gadget .goog-te-combo {
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--navy-mid);
+      color: var(--white);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      font-family: var(--font-b);
+      font-size: 0.75rem;
+      font-weight: 500;
+      outline: none;
+      cursor: pointer;
+    }
+    .goog-te-gadget span {
+      display: none !important;
+    }
+    .goog-te-banner-frame.skiptranslate, .goog-te-img {
+      display: none !important;
+    }
+    body {
+      top: 0px !important;
     }
 
     /* ══════════════════════════════
@@ -640,19 +676,25 @@
   <!-- ══ TOPBAR ══ -->
   <header class="tk-topbar">
     <div class="tk-topbar-inner">
-      <a href="#" class="tk-brand">
-        <div class="tk-brand-icon"><i class="fa-solid fa-terminal"></i></div>
-        <a href="{{url('/')}}">
-        <div>
-
-          <div class="tk-brand-name">AIR JAKE</div>
-          <span class="tk-brand-sub">Delivery Services</span>
+      <div class="tk-brand-group">
+        <a href="#" class="tk-brand">
+          <div class="tk-brand-icon"><i class="fa-solid fa-terminal"></i></div>
+        </a>
+        <a href="{{url('/')}}" style="text-decoration: none;">
+          <div>
+            <div class="tk-brand-name">AIR JAKE</div>
+            <span class="tk-brand-sub">Delivery Services</span>
+          </div>
+        </a>
+        <div class="tk-live-badge">
+          <div class="live-dot"></div>
+          Tracking Active
         </div>
-
-      </a>
-      <div class="tk-live-badge">
-        <div class="live-dot"></div>
-        Tracking Active
+      </div>
+      
+      <!-- Google Website Translator Widget Element -->
+      <div class="tk-translate-wrapper">
+        <div id="google_element"></div>
       </div>
     </div>
   </header>
@@ -888,6 +930,17 @@
 
     </div>
   </div><!-- /.tk-page -->
+
+  <!-- Google Website Translator Scripts -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
