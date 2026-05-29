@@ -796,10 +796,12 @@
   <header class="action-bar no-print">
     <div class="action-brand">
       <div class="action-brand-icon"><i class="fa-solid fa-terminal"></i></div>
+      <a href="{{url('/')}}">
       <div>
         <div class="action-brand-name">AIR JAKE</div>
         <span class="action-brand-sub">Delivery Services</span>
       </div>
+      <a/>
     </div>
     <div class="action-btns">
       <button class="btn btn-outline" onclick="openShare()">
