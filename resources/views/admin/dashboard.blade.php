@@ -634,10 +634,12 @@
 
   <!-- ── MOBILE TOP BAR ── -->
   <header class="topbar">
+     <a href="{{url('/')}}">
     <div class="topbar-brand">
       <div class="brand-icon"><i class="fa-solid fa-terminal"></i></div>
       <span>Air Jake</span>
     </div>
+</a>
     <div class="topbar-actions">
       <button class="menu-btn" onclick="openDrawer()">
         <i class="fa-solid fa-bars"></i>
