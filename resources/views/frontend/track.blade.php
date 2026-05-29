@@ -764,7 +764,7 @@
             <i class="fa-solid fa-circle-check" style="font-size:17px;"></i>
           </div>
           <div class="tk-step-name">Order<br>Confirmed</div>
-          <div class="tk-step-date">{{$parcel->created_at->format('M d, Y H:i A')}}</div>
+          <div class="tk-step-date">{{$parcel->created_at->format('M d, Y')}}</div>
         </div>
 
         <div class="tk-step done">
@@ -778,7 +778,7 @@
     $transitLog = $parcel->logs->firstWhere('status', 'Order Picked Up');
 @endphp
 
-{{ $transitLog ? $transitLog->created_at->format('M d, Y H:i A') : 'Pending' }}
+{{ $transitLog ? $transitLog->created_at->format('M d, Y') : 'Pending' }}
       </div>
         </div>
 
@@ -793,7 +793,7 @@
     $transitLog = $parcel->logs->firstWhere('status', 'Order Picked Up');
 @endphp
 
-{{ $transitLog ? $transitLog->created_at->format('M d, Y H:i A') : 'Pending' }}
+{{ $transitLog ? $transitLog->created_at->format('M d, Y') : 'Pending' }}
           </div>
         </div>
 
@@ -808,7 +808,7 @@
     $transitLog = $parcel->logs->firstWhere('status', 'Custom Hold');
 @endphp
 
-{{ $transitLog ? $transitLog->created_at->format('M d, Y H:i A') : 'Pending' }}
+{{ $transitLog ? $transitLog->created_at->format('M d, Y') : 'Pending' }}
            
           </div>
         </div>
@@ -823,7 +823,7 @@
     $transitLog = $parcel->logs->firstWhere('status', 'Delivered');
 @endphp
 
-{{ $transitLog ? $transitLog->created_at->format('M d, Y H:i A') : 'Pending' }}
+{{ $transitLog ? $transitLog->created_at->format('M d, Y') : 'Pending' }}
             
           </div>
         </div>
