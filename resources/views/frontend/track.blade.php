@@ -835,7 +835,7 @@
     <div class="tk-grid">
 
       <!-- Dispatch History -->
-      <div class="tk-card">
+      {{--<div class="tk-card">
         <div class="tk-card-head">
           <div class="tk-section-title">
             <i class="fa-solid fa-clock-rotate-left"></i>
@@ -911,10 +911,13 @@
 
           </div>
         </div>
-      </div>
+      </div>--}}
+
+
+
 
       <!-- Live Map -->
-      <div class="tk-map-card">
+     {{--<div class="tk-map-card">
         <div class="tk-map-head">
           <div class="tk-section-title">
             <i class="fa-solid fa-satellite"></i>
@@ -928,7 +931,7 @@
         <div id="manifest-map"></div>
       </div>
 
-    </div>
+    </div>--}}
   </div><!-- /.tk-page -->
 
   <!-- Google Website Translator Scripts -->
