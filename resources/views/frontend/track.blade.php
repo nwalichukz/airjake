@@ -732,14 +732,11 @@
 
           <div class="tk-step-name">Picked by<br>Courier</div>
           <div class="tk-step-date">
-            @foreach($parcel->logs as $order)
-            @if($order->status == 'Order Picked Up')
-             {{$order->created_at->format('M d, Y H:i A')}}
-             @else
-             
-             @endif
-          
-           @endforeach
+           @php
+    $transitLog = $parcel->logs->firstWhere('status', 'Order Picked Up');
+@endphp
+
+{{ $transitLog ? $transitLog->created_at->format('M d, Y H:i A') : 'Pending' }}
       </div>
         </div>
 
@@ -750,14 +747,11 @@
           <div class="tk-step-name">On the<br>Way</div>
           <div class="tk-step-date">
               
-            @foreach($parcel->logs as $order)
-            @if($order->status == 'In Transit')
-             {{$order->created_at->format('M d, Y H:i A')}}
-             @else
-             Pending
-             @endif
-          
-           @endforeach
+                     @php
+    $transitLog = $parcel->logs->firstWhere('status', 'Order Picked Up');
+@endphp
+
+{{ $transitLog ? $transitLog->created_at->format('M d, Y H:i A') : 'Pending' }}
           </div>
         </div>
 
@@ -768,14 +762,12 @@
           
           <div class="tk-step-name">Custom<br>Hold</div>
           <div class="tk-step-date">
-            @foreach($parcel->logs as $order)
-            @if($order->status == 'Custom Hold')
-             {{$order->created_at->format('M d, Y H:i A')}}
-             @else
-             Pending
-             @endif
-          
-           @endforeach
+                      @php
+    $transitLog = $parcel->logs->firstWhere('status', 'Custom Hold');
+@endphp
+
+{{ $transitLog ? $transitLog->created_at->format('M d, Y H:i A') : 'Pending' }}
+           
           </div>
         </div>
 
@@ -785,14 +777,12 @@
           </div>
           <div class="tk-step-name">Delivered</div>
           <div class="tk-step-date">
-                @foreach($parcel->logs as $order)
-            @if($order->status == 'Delivered')
-             {{$order->created_at->format('M d, Y H:i A')}}
-             @else
-             Pending
-             @endif
-          
-           @endforeach
+                                  @php
+    $transitLog = $parcel->logs->firstWhere('status', 'Delivered');
+@endphp
+
+{{ $transitLog ? $transitLog->created_at->format('M d, Y H:i A') : 'Pending' }}
+            
           </div>
         </div>
 
