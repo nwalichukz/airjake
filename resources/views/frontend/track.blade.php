@@ -748,7 +748,14 @@
           <i class="fa-solid fa-bars-staggered"></i>
           Consignment Flow Map
         </div>
-        <div class="tk-progress-pct">75%</div>
+        <div class="tk-progress-pct">
+                   @php
+    $count = $parcel->logs->where('status', '!=', null)->count();
+    $percentage = ($count/5)*100
+@endphp
+      
+      {{$percentage}}%
+        </div>
       </div>
 
       <div class="tk-progress-bar-wrap">
