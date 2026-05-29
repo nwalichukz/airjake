@@ -55,25 +55,53 @@
                     </ul>
                 </div>
             @endif
+            @if (session('success'))
+    <div class="bg-green-950/40 border-2 border-green-500 text-green-200 p-4 rounded-xl mb-6 shadow-md">
+        <div class="flex items-center space-x-2 mb-1.5 font-bold uppercase text-xs tracking-wider text-white">
+            <i class="fa-solid fa-circle-check text-green-500"></i>
+            <span>Operation Successful</span>
+        </div>
+        <p class="text-[11px] text-slate-300">{{ session('success') }}</p>
+    </div>
+@endif
+@if (session('error'))
+    <div class="bg-red-950/40 border-2 border-red-500 text-red-200 p-4 rounded-xl mb-6 shadow-md">
+        <div class="flex items-center space-x-2 mb-1.5 font-bold uppercase text-xs tracking-wider text-white">
+            <i class="fa-solid fa-circle-xmark text-red-500"></i>
+            <span>Operation Failed</span>
+        </div>
+        <p class="text-[11px] text-slate-300">{{ session('error') }}</p>
+    </div>
+@endif
 
-            <!-- Core Data Input Update Pipeline Action Form -->
-            <form action="{{ url('admin/parcel-update') }}" method="POST" class="space-y-5">
+            <!-- Core {{ url('/admin/parcel-update/' . $parcel->id) }} Input Update Pipeline Action Form -->
+            <form action="{{ url('/admin/parcel-update/' . $parcel->id) }}" method="POST" class="space-y-5">
                 @csrf
                 @method('PUT') <!-- Use PUT/PATCH for semantic resource modification updates -->
 
                 <!-- Hidden Reference Record Key to track layout targets -->
-                <input type="hidden" name="id" value="{{ $parcel->id }}">
+                <input type="hidden" name="parcel_id" value="{{ $parcel->id }}">
 
                 <!-- Transit Step Status Dropdown Matrix Section -->
                 <div>
                     <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1.5 tracking-wider">Consignment Logistics Status</label>
                     <div class="relative">
-                        <select name="status" class="w-full bg-slate-950 border @error('status') border-brand-red @else border-slate-700 @enderror rounded-xl p-3 text-white appearance-none focus:outline-none focus:border-brand-red text-xs font-medium transition cursor-pointer">
-                            <option value="Manifest Picked Up" {{ old('status', $parcel->status) == 'Manifest Picked Up' ? 'selected' : '' }}>Manifest Picked Up / Origin Sorting</option>
-                            <option value="In Transit" {{ old('status', $parcel->status) == 'In Transit' ? 'selected' : '' }}>In Transit (Global Air/Sea Route Rail)</option>
-                            <option value="Customs Clearing" {{ old('status', $parcel->status) == 'Customs Clearing' ? 'selected' : '' }}>Customs Holding / Border Clearance Verification</option>
-                            <option value="Out For Delivery" {{ old('status', $parcel->status) == 'Out For Delivery' ? 'selected' : '' }}>Out For Local Last-Mile Delivery Node</option>
-                            <option value="Delivered" {{ old('status', $parcel->status) == 'Delivered' ? 'selected' : '' }}>Delivered / Consignment Closed</option>
+                        <select name="status" class="w-full bg-slate-950 border rounded-xl p-3 text-white appearance-none focus:outline-none focus:border-brand-red text-xs font-medium transition cursor-pointer">
+               
+                   <?php
+                   $allItems  = ['Order Picked Up', 'In Transit', 'Custom Hold', 'Delivered'];
+                       $usedItems = $parcel->logs->pluck('status')->toArray();
+                       $excluded  = array_diff($allItems, $usedItems);
+                       ?>
+
+                    @foreach($excluded as $item)
+                      <option value="{{ $item }}">{{ $item }}</option>
+                      @endforeach
+
+                        {{--  <option value="In Transit">In Transit</option>
+                            <option value="Customs Clearing">Customs Holding</option>
+                            <option value="Out For Local Last-Mile Delivery Node">Out For Local Last-Mile Delivery Node</option>
+                            <option value="Delivered">Delivered</option>--}}
                         </select>
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
                             <i class="fa-solid fa-chevron-down text-[10px]"></i>

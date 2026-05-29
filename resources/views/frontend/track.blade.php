@@ -726,24 +726,54 @@
           <div class="tk-step-node done">
             <i class="fa-solid fa-truck-ramp-box" style="font-size:16px;"></i>
           </div>
+
           <div class="tk-step-name">Picked by<br>Courier</div>
-          <div class="tk-step-date">Pending</div>
+          <div class="tk-step-date">
+            @foreach($parcel->logs as $order)
+            @if($order->status == 'Order Picked Up')
+             {{$order->created_at->format('M d, Y H:i A')}}
+             @else
+             Pending
+             @endif
+          
+           @endforeach
+      </div>
         </div>
 
         <div class="tk-step done">
           <div class="tk-step-node done">
             <i class="fa-solid fa-plane-departure" style="font-size:15px;"></i>
-          </div>
+          </div> 
           <div class="tk-step-name">On the<br>Way</div>
-          <div class="tk-step-date">Pending</div>
+          <div class="tk-step-date">
+              
+            @foreach($parcel->logs as $order)
+            @if($order->status == 'In Transit')
+             {{$order->created_at->format('M d, Y H:i A')}}
+             @else
+             Pending
+             @endif
+          
+           @endforeach
+          </div>
         </div>
 
         <div class="tk-step active">
           <div class="tk-step-node active">
             <i class="fa-solid fa-building-shield" style="font-size:16px;"></i>
           </div>
+          
           <div class="tk-step-name">Custom<br>Hold</div>
-          <div class="tk-step-date">Pending</div>
+          <div class="tk-step-date">
+            @foreach($parcel->logs as $order)
+            @if($order->status == 'Custom Hold')
+             {{$order->created_at->format('M d, Y H:i A')}}
+             @else
+             Pending
+             @endif
+          
+           @endforeach
+          </div>
         </div>
 
         <div class="tk-step pending">
@@ -751,7 +781,16 @@
             <i class="fa-solid fa-warehouse" style="font-size:16px;"></i>
           </div>
           <div class="tk-step-name">Delivered</div>
-          <div class="tk-step-date">Pending</div>
+          <div class="tk-step-date">
+                @foreach($parcel->logs as $order)
+            @if($order->status == 'Delivered')
+             {{$order->created_at->format('M d, Y H:i A')}}
+             @else
+             Pending
+             @endif
+          
+           @endforeach
+          </div>
         </div>
 
       </div>

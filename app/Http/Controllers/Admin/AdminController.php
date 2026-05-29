@@ -118,24 +118,31 @@ class AdminController extends Controller
 
 
     public function update(Request $request, Parcel $parcel) {
+
+        // return $request->all();
+        $available = ParcelLog::where(['parcel_id'=> $request['parcel_id'], 'status'=>$request->status])->first();
+        if(!empty($available->id)){
         $request->validate([
             'status' => 'required|string',
             'current_location' => 'required|string',
-            'latitude' => 'required|numeric',
-            'longitude' => 'required|numeric',
+           // 'latitude' => 'required|numeric',
+           // 'longitude' => 'required|numeric',
             'status_description' => 'nullable|string'
         ]);
 
         $parcel->update($request->only(['status', 'current_location', 'latitude', 'longitude', 'status_description']));
 
         ParcelLog::create([
-            'parcel_id' => $parcel->id,
+            'parcel_id' => $request->parcel_id,
             'status' => $request->status,
             'location' => $request->current_location,
             'description' => $request->status_description
         ]);
 
         return redirect()->back()->with('success', 'Parcel transit checkpoint updated updated successfully.');
+    }else{
+        return redirect()->back()->with('error', 'You have this status already updated.');
+    }
     }
 
 

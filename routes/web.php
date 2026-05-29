@@ -28,7 +28,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
    
    
    
-    Route::post('/parcel-update', [AdminController::class, 'update']);
+    Route::put('/parcel-update/{id}', [AdminController::class, 'update']);
 
     
    
