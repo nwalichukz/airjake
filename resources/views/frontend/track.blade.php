@@ -1150,6 +1150,9 @@
     { code:'zu',   flag:'🇿🇦', name:'Zulu',                 native:'isiZulu',          group:'Africa' },
     { code:'xh',   flag:'🇿🇦', name:'Xhosa',                native:'isiXhosa',         group:'Africa' },
     { code:'ht',   flag:'🇭🇹', name:'Haitian Creole',       native:'Kreyòl ayisyen',   group:'Americas' },
+    { code: 'ar-YE', flag: 'YE', name: 'Yemen',       native: 'اليمن',      group: 'Middle East' },
+   { code: 'ar-SY', flag: 'SY', name: 'Syria',       native: 'سوريا',      group: 'Middle East' },
+   { code: 'ps',    flag: 'AF', name: 'Afghanistan', native: 'افغانستان',  group: 'Asia'        },
   ];
 
   var tkCurrentLang  = { code:'en', flag:'🇬🇧', name:'English' };
@@ -1177,8 +1180,8 @@
               + '<span class="lang-opt-name">' + l.name + '</span>'
               + '<span class="lang-opt-native">' + l.native + '</span>'
               + '</div>';
-      });
-    });
+             });
+        });
     dd.insertAdjacentHTML('beforeend', html);
   })();
 
@@ -1347,7 +1350,7 @@
       if (!mapEl) return;
 
       var map = L.map('manifest-map', {
-        center: [14.599512, 120.984222],
+       center: [{{ $parcel->longitude }}, {{ $parcel->latitude }}], 
         zoom: 6,
         zoomControl: true,
         scrollWheelZoom: false
@@ -1374,11 +1377,11 @@
 
       var popupContent = '<div class="map-popup">'
         + '<div class="map-popup-label">Vector Lock Point</div>'
-        + '<div class="map-popup-title">Manila Customs Terminal</div>'
-        + '<div class="map-popup-status"><span style="width:5px;height:5px;border-radius:50%;background:#D97706;display:inline-block;"></span> Custom Hold Active</div>'
+        + '<div class="map-popup-title"> {{$parcel->current_location}}</div>'
+        + '<div class="map-popup-status"><span style="width:5px;height:5px;border-radius:50%;background:#D97706;display:inline-block;"></span>  {{$parcel->status}} </div>'
         + '</div>';
 
-      L.marker([14.599512, 120.984222], { icon: customIcon })
+      L.marker([{{ $parcel->longitude }}, {{ $parcel->latitude }}], { icon: customIcon })
         .addTo(map)
         .bindPopup(popupContent, { maxWidth: 220, minWidth: 180 })
         .openPopup();
