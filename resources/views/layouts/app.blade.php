@@ -461,6 +461,8 @@
             background: var(--red); z-index: 9999; width: 0%; transition: width 0.1s;
         }
     </style>
+    <script src="//code.jivosite.com/widget/Xt7bppZ2W6" async></script>
+
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
