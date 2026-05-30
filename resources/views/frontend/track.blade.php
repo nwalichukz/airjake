@@ -1058,7 +1058,7 @@
       </div>
 
       <!-- Live Map -->
-      {{--<div class="tk-map-card">
+      <div class="tk-map-card">
         <div class="tk-map-head">
           <div class="tk-section-title">
             <i class="fa-solid fa-satellite"></i>
@@ -1070,7 +1070,7 @@
           </div>
         </div>
         <div id="manifest-map"></div>
-      </div>--}}
+      </div>
 
     </div>
   </div><!-- /.tk-page -->
