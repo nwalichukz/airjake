@@ -121,7 +121,7 @@ class AdminController extends Controller
 
         // return $request->all();
         $available = ParcelLog::where(['parcel_id'=> $request['parcel_id'], 'status'=>$request->status])->first();
-        if(empty($available->id)){
+        if(!empty($available->id)){
         $request->validate([
             'status' => 'required|string',
             'current_location' => 'required|string',
