@@ -530,19 +530,33 @@
                 <li><a href="{{url('/contact')}}">
                     <i class="fa-solid fa-envelope" aria-hidden="true"></i> Contact
                 </a></li>
+                    @if(!Auth::check())
+                    <li>
+                    <a href="{{url('/login')}}">
+                    <i class="fa-solid fa-envelope" aria-hidden="true"></i> Login
+                  </a>
+                </li>
+                       @else
+                    <li>
+                <a href="{{url('/admin/dashboard')}}">
+                    <i class="fa-solid fa-envelope" aria-hidden="true"></i> Dashboard
+                  </a>
+                </li>
+                  @endif
+
             </ul>
 
-            <div class="nav-cta">
-                @if(!Auth::check())
-                <a href="{{url('/login')}}" class="btn-secondary">
+            {{--<div class="nav-cta">
+                
+                <a href="{{url('')}}" class="btn-secondary">
                     <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i> Log In
                 </a>
-                @else
+               
                 <a href="{{url('/admin/dashboard')}}" class="btn-primary">
                     <i class="fa-solid fa-gauge-high" aria-hidden="true"></i> Admin Portal
                 </a>
-                @endif
-            </div>
+              
+            </div>--}}
 
             <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileDrawer">
                 <span></span><span></span><span></span>
@@ -574,6 +588,8 @@
             <div class="drawer-divider"></div>
             @if(!Auth::check())
             <a href="{{url('/login')}}"><i class="fa-solid fa-right-to-bracket"></i> Log In</a>
+            @else
+             <a href="{{url('/admin/dashboard')}}"><i class="fa-solid fa-right-to-bracket"></i> Dashboard</a>
             @endif
         </nav>
 
@@ -596,13 +612,13 @@
             </div>
         </div>
 
-        <div class="drawer-actions">
+        {{--<div class="drawer-actions">
             @if(Auth::check())
             <a href="{{url('/admin/dashboard')}}" class="btn-primary" style="justify-content:center;">
                 <i class="fa-solid fa-gauge-high"></i> Admin Portal
             </a>
             @endif
-        </div>
+        </div>--}}
     </aside>
 
     <main id="main-content">
