@@ -898,7 +898,7 @@
         <div class="tk-progress-pct">
           @php
             $count = $parcel->logs->where('status', '!=', null)->count();
-            $percentage = ($count/5)*100
+            $percentage = ($count/4)*100
           @endphp
           {{$percentage}}%
         </div>
@@ -920,7 +920,7 @@
           <div class="tk-step-date">{{$parcel->created_at->format('M d, Y')}}</div>
         </div>
 
-        <div class="tk-step done">
+        {{--<div class="tk-step done">
           <div class="tk-step-node done">
             <i class="fa-solid fa-truck-ramp-box" style="font-size:16px;"></i>
           </div>
@@ -928,13 +928,13 @@
           <div class="tk-step-date">
             {{$parcel->created_at->format('M d, Y')}}
           </div>
-        </div>
+        </div>--}}
 
         <div class="tk-step done">
           <div class="tk-step-node done">
             <i class="fa-solid fa-plane-departure" style="font-size:15px;"></i>
           </div>
-          <div class="tk-step-name">On the<br>Way</div>
+          <div class="tk-step-name">In Transit</div>
           <div class="tk-step-date">
             @php
               $transitLog = $parcel->logs->firstWhere('status', 'In Transit');
