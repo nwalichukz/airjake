@@ -652,8 +652,8 @@
             <div class="footer-col">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="#"><i class="fa-solid fa-chevron-right"></i>Home</a></li>
-                    <li><a href="#"><i class="fa-solid fa-chevron-right"></i>Track Parcel</a></li>
+                    <li><a href="{{url('/')}}"><i class="fa-solid fa-chevron-right"></i>Home</a></li>
+                    <li><a href="{{url('/about')}}"><i class="fa-solid fa-chevron-right"></i>About Us</a></li>
                     <li><a href="#"><i class="fa-solid fa-chevron-right"></i>Services</a></li>
                     <li><a href="#"><i class="fa-solid fa-chevron-right"></i>Rates &amp; Pricing</a></li>
                     <li><a href="#"><i class="fa-solid fa-chevron-right"></i>FAQ</a></li>

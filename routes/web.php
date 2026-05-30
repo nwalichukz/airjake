@@ -10,6 +10,8 @@ Route::get('/', [TrackingController::class, 'index'])->name('home');
 Route::any('/track', [TrackingController::class, 'track'])->name('track');
 Route::get('/contact', [TrackingController::class, 'contact'])->name('contact');
 
+Route::get('/about', [TrackingController::class, 'about'])->name('about');
+
 Route::get('/login', [TrackingController::class, 'login'])->name('login');
 
  Route::post('/parcel/store', [AdminController::class, 'store']);

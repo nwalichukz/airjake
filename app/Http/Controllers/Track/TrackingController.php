@@ -36,6 +36,12 @@ class TrackingController extends Controller
     }
 
 
+       public function about() {
+        return view('frontend.about-us');
+    }
+
+
+
 
 
 
