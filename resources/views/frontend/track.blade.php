@@ -141,36 +141,163 @@
       50%{ opacity:.35; transform:scale(.55); }
     }
 
-    /* Google Translate Styling Customizations */
+    /* ══════════════════════════════
+       CUSTOM LANGUAGE SELECTOR
+    ══════════════════════════════ */
     .tk-translate-wrapper {
       display: flex;
       align-items: center;
+      position: relative;
+      z-index: 300;
     }
-    .goog-te-gadget {
-      font-family: var(--font-b) !important;
-      color: transparent !important;
+
+    .lang-selector {
+      position: relative;
     }
-    .goog-te-gadget .goog-te-combo {
-      padding: 4px 10px;
+    .lang-trigger {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: white;
+      padding: 5px 12px;
       border-radius: 6px;
-      background: var(--navy-mid);
-      color: var(--white);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      font-family: var(--font-b);
-      font-size: 0.75rem;
+      font-size: 0.78rem;
       font-weight: 500;
-      outline: none;
       cursor: pointer;
+      transition: all 0.18s;
+      font-family: var(--font-b);
+      min-width: 170px;
+      justify-content: space-between;
+      user-select: none;
     }
-    .goog-te-gadget span {
-      display: none !important;
+    .lang-trigger:hover {
+      background: rgba(238,27,36,0.15);
+      border-color: var(--red);
     }
-    .goog-te-banner-frame.skiptranslate, .goog-te-img {
-      display: none !important;
+    .lang-trigger .lang-flag { font-size: 1rem; line-height: 1; }
+    .lang-trigger .lang-name { flex: 1; text-align: left; padding: 0 6px; }
+    .lang-trigger .lang-chevron {
+      font-size: 0.6rem;
+      transition: transform 0.2s;
+      opacity: 0.7;
     }
-    body {
-      top: 0px !important;
+    .lang-selector.open .lang-chevron { transform: rotate(180deg); }
+
+    .lang-dropdown {
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 0;
+      background: #0d2a4a;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 6px;
+      min-width: 220px;
+      max-height: 400px;
+      overflow-y: auto;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+      display: none;
+      z-index: 400;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.15) transparent;
     }
+    .lang-dropdown::-webkit-scrollbar { width: 4px; }
+    .lang-dropdown::-webkit-scrollbar-track { background: transparent; }
+    .lang-dropdown::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+    .lang-selector.open .lang-dropdown { display: block; animation: dropIn 0.18s ease; }
+
+    @keyframes dropIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .lang-search-wrap {
+      position: relative;
+      margin-bottom: 4px;
+    }
+    .lang-search-wrap i {
+      position: absolute;
+      left: 9px; top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255,255,255,0.3);
+      font-size: 0.65rem;
+      pointer-events: none;
+    }
+    .lang-search {
+      width: 100%;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      padding: 6px 10px 6px 30px;
+      color: white;
+      font-size: 0.75rem;
+      font-family: var(--font-b);
+      outline: none;
+    }
+    .lang-search::placeholder { color: rgba(255,255,255,0.3); }
+
+    .lang-group-label {
+      font-size: 0.63rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      padding: 6px 8px 3px;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .lang-group-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.07);
+    }
+
+    .lang-option {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 7px 10px;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: background 0.12s;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.75);
+    }
+    .lang-option:hover { background: rgba(255,255,255,0.08); color: white; }
+    .lang-option.selected { background: rgba(238,27,36,0.15); color: white; }
+    .lang-option.selected .lang-opt-name::after {
+      content: '✓';
+      margin-left: 6px;
+      font-size: 0.7rem;
+      color: #ff9598;
+    }
+    .lang-option .lang-opt-flag { font-size: 1rem; line-height: 1; width: 22px; text-align: center; }
+    .lang-option .lang-opt-name { flex: 1; }
+    .lang-option .lang-opt-native { font-size: 0.68rem; color: rgba(255,255,255,0.35); }
+
+    /* Translation banner */
+    .translate-banner {
+      display: none;
+      background: var(--navy-mid);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 5px 16px;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.6);
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .translate-banner.visible { display: flex; }
+    .translate-banner strong { color: white; }
+    .translate-banner a {
+      color: #ff9598;
+      text-decoration: none;
+      margin-left: auto;
+      white-space: nowrap;
+    }
+    .translate-banner a:hover { text-decoration: underline; }
 
     /* ══════════════════════════════
        PAGE WRAP
@@ -691,13 +818,33 @@
           Tracking Active
         </div>
       </div>
-      
-      <!-- Google Website Translator Widget Element -->
+
+      <!-- ── Custom Language Selector (replaces Google Translate) ── -->
       <div class="tk-translate-wrapper">
-        <div id="google_element"></div>
+        <div class="lang-selector" id="tkLangSelector">
+          <div class="lang-trigger" id="tkLangTrigger" onclick="tkToggleLang()" role="button" aria-haspopup="listbox" aria-expanded="false" tabindex="0">
+            <span class="lang-flag" id="tkLangFlag">🇬🇧</span>
+            <span class="lang-name" id="tkLangName">English</span>
+            <i class="fa-solid fa-chevron-down lang-chevron"></i>
+          </div>
+          <div class="lang-dropdown" id="tkLangDropdown" role="listbox" aria-label="Select language">
+            <div class="lang-search-wrap">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input class="lang-search" type="text" placeholder="Search language..." oninput="tkFilterLangs(this)" aria-label="Search languages">
+            </div>
+            <!-- populated by JS -->
+          </div>
+        </div>
       </div>
     </div>
   </header>
+
+  <!-- Translation active banner -->
+  <div class="translate-banner" id="tkTranslateBanner">
+    <i class="fa-solid fa-language"></i>
+    <span>Page translated to: <strong id="tkTranslateBannerLang">English</strong></span>
+    <a href="#" onclick="tkResetLang(); return false;"><i class="fa-solid fa-rotate-left"></i> Show original (English)</a>
+  </div>
 
   <!-- ══ PAGE ══ -->
   <div class="tk-page">
@@ -749,12 +896,11 @@
           Consignment Flow Map
         </div>
         <div class="tk-progress-pct">
-                   @php
-    $count = $parcel->logs->where('status', '!=', null)->count();
-    $percentage = ($count/5)*100
-@endphp
-      
-      {{$percentage}}%
+          @php
+            $count = $parcel->logs->where('status', '!=', null)->count();
+            $percentage = ($count/5)*100
+          @endphp
+          {{$percentage}}%
         </div>
       </div>
 
@@ -778,29 +924,25 @@
           <div class="tk-step-node done">
             <i class="fa-solid fa-truck-ramp-box" style="font-size:16px;"></i>
           </div>
-
           <div class="tk-step-name">Picked by<br>Courier</div>
           <div class="tk-step-date">
-           @php
-    $transitLog = $parcel->logs->firstWhere('status', 'Order Picked Up');
-@endphp
-
-{{ $transitLog ? $transitLog->created_at->format('M d, Y') : 'Pending' }}
-      </div>
+            @php
+              $transitLog = $parcel->logs->firstWhere('status', 'Order Picked Up');
+            @endphp
+            {{ $transitLog ? $transitLog->created_at->format('M d, Y') : 'Pending' }}
+          </div>
         </div>
 
         <div class="tk-step done">
           <div class="tk-step-node done">
             <i class="fa-solid fa-plane-departure" style="font-size:15px;"></i>
-          </div> 
+          </div>
           <div class="tk-step-name">On the<br>Way</div>
           <div class="tk-step-date">
-              
-                     @php
-    $transitLog = $parcel->logs->firstWhere('status', 'Order Picked Up');
-@endphp
-
-{{ $transitLog ? $transitLog->created_at->format('M d, Y') : 'Pending' }}
+            @php
+              $transitLog = $parcel->logs->firstWhere('status', 'Order Picked Up');
+            @endphp
+            {{ $transitLog ? $transitLog->created_at->format('M d, Y') : 'Pending' }}
           </div>
         </div>
 
@@ -808,15 +950,12 @@
           <div class="tk-step-node active">
             <i class="fa-solid fa-building-shield" style="font-size:16px;"></i>
           </div>
-          
           <div class="tk-step-name">Custom<br>Hold</div>
           <div class="tk-step-date">
-                      @php
-    $transitLog = $parcel->logs->firstWhere('status', 'Custom Hold');
-@endphp
-
-{{ $transitLog ? $transitLog->created_at->format('M d, Y') : 'Pending' }}
-           
+            @php
+              $transitLog = $parcel->logs->firstWhere('status', 'Custom Hold');
+            @endphp
+            {{ $transitLog ? $transitLog->created_at->format('M d, Y') : 'Pending' }}
           </div>
         </div>
 
@@ -826,12 +965,10 @@
           </div>
           <div class="tk-step-name">Delivered</div>
           <div class="tk-step-date">
-                                  @php
-    $transitLog = $parcel->logs->firstWhere('status', 'Delivered');
-@endphp
-
-{{ $transitLog ? $transitLog->created_at->format('M d, Y') : 'Pending' }}
-            
+            @php
+              $transitLog = $parcel->logs->firstWhere('status', 'Delivered');
+            @endphp
+            {{ $transitLog ? $transitLog->created_at->format('M d, Y') : 'Pending' }}
           </div>
         </div>
 
@@ -920,11 +1057,8 @@
         </div>
       </div>--}}
 
-
-
-
       <!-- Live Map -->
-     {{--<div class="tk-map-card">
+      {{--<div class="tk-map-card">
         <div class="tk-map-head">
           <div class="tk-section-title">
             <i class="fa-solid fa-satellite"></i>
@@ -936,26 +1070,282 @@
           </div>
         </div>
         <div id="manifest-map"></div>
-      </div>
+      </div>--}}
 
-    </div>--}}
+    </div>
   </div><!-- /.tk-page -->
 
-  <!-- Google Website Translator Scripts -->
-  <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-        pageLanguage: 'en',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-      }, 'google_element');
-    }
-  </script>
-  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
+  /* ════════════════════════════════════════════════
+     CUSTOM LANGUAGE TRANSLATOR — tracking page
+     Same engine as app.blade.php — no Google dependency
+  ════════════════════════════════════════════════ */
 
-      /* ── Leaflet Map ── */
+  var TK_LANGUAGES = [
+    { code:'en',   flag:'🇬🇧', name:'English',              native:'English',          group:'Common' },
+    { code:'fr',   flag:'🇫🇷', name:'French',               native:'Français',         group:'Common' },
+    { code:'es',   flag:'🇪🇸', name:'Spanish',              native:'Español',          group:'Common' },
+    { code:'ar',   flag:'🇸🇦', name:'Arabic',               native:'العربية',          group:'Common' },
+    { code:'zh',   flag:'🇨🇳', name:'Chinese (Simplified)', native:'中文(简体)',         group:'Common' },
+    { code:'pt',   flag:'🇧🇷', name:'Portuguese',           native:'Português',        group:'Common' },
+    { code:'de',   flag:'🇩🇪', name:'German',               native:'Deutsch',          group:'Europe' },
+    { code:'it',   flag:'🇮🇹', name:'Italian',              native:'Italiano',         group:'Europe' },
+    { code:'nl',   flag:'🇳🇱', name:'Dutch',                native:'Nederlands',       group:'Europe' },
+    { code:'pl',   flag:'🇵🇱', name:'Polish',               native:'Polski',           group:'Europe' },
+    { code:'ru',   flag:'🇷🇺', name:'Russian',              native:'Русский',          group:'Europe' },
+    { code:'uk',   flag:'🇺🇦', name:'Ukrainian',            native:'Українська',       group:'Europe' },
+    { code:'ro',   flag:'🇷🇴', name:'Romanian',             native:'Română',           group:'Europe' },
+    { code:'cs',   flag:'🇨🇿', name:'Czech',                native:'Čeština',          group:'Europe' },
+    { code:'hu',   flag:'🇭🇺', name:'Hungarian',            native:'Magyar',           group:'Europe' },
+    { code:'sv',   flag:'🇸🇪', name:'Swedish',              native:'Svenska',          group:'Europe' },
+    { code:'da',   flag:'🇩🇰', name:'Danish',               native:'Dansk',            group:'Europe' },
+    { code:'fi',   flag:'🇫🇮', name:'Finnish',              native:'Suomi',            group:'Europe' },
+    { code:'nb',   flag:'🇳🇴', name:'Norwegian',            native:'Norsk',            group:'Europe' },
+    { code:'el',   flag:'🇬🇷', name:'Greek',                native:'Ελληνικά',         group:'Europe' },
+    { code:'tr',   flag:'🇹🇷', name:'Turkish',              native:'Türkçe',           group:'Europe' },
+    { code:'sk',   flag:'🇸🇰', name:'Slovak',               native:'Slovenčina',       group:'Europe' },
+    { code:'bg',   flag:'🇧🇬', name:'Bulgarian',            native:'Български',        group:'Europe' },
+    { code:'hr',   flag:'🇭🇷', name:'Croatian',             native:'Hrvatski',         group:'Europe' },
+    { code:'sr',   flag:'🇷🇸', name:'Serbian',              native:'Српски',           group:'Europe' },
+    { code:'lt',   flag:'🇱🇹', name:'Lithuanian',           native:'Lietuvių',         group:'Europe' },
+    { code:'lv',   flag:'🇱🇻', name:'Latvian',              native:'Latviešu',         group:'Europe' },
+    { code:'et',   flag:'🇪🇪', name:'Estonian',             native:'Eesti',            group:'Europe' },
+    { code:'sl',   flag:'🇸🇮', name:'Slovenian',            native:'Slovenščina',      group:'Europe' },
+    { code:'is',   flag:'🇮🇸', name:'Icelandic',            native:'Íslenska',         group:'Europe' },
+    { code:'ga',   flag:'🇮🇪', name:'Irish',                native:'Gaeilge',          group:'Europe' },
+    { code:'sq',   flag:'🇦🇱', name:'Albanian',             native:'Shqip',            group:'Europe' },
+    { code:'mk',   flag:'🇲🇰', name:'Macedonian',           native:'Македонски',       group:'Europe' },
+    { code:'be',   flag:'🇧🇾', name:'Belarusian',           native:'Беларуская',       group:'Europe' },
+    { code:'ja',   flag:'🇯🇵', name:'Japanese',             native:'日本語',            group:'Asia' },
+    { code:'ko',   flag:'🇰🇷', name:'Korean',               native:'한국어',            group:'Asia' },
+    { code:'hi',   flag:'🇮🇳', name:'Hindi',                native:'हिन्दी',            group:'Asia' },
+    { code:'bn',   flag:'🇧🇩', name:'Bengali',              native:'বাংলা',            group:'Asia' },
+    { code:'ur',   flag:'🇵🇰', name:'Urdu',                 native:'اردو',             group:'Asia' },
+    { code:'fa',   flag:'🇮🇷', name:'Persian (Farsi)',       native:'فارسی',            group:'Asia' },
+    { code:'th',   flag:'🇹🇭', name:'Thai',                 native:'ภาษาไทย',          group:'Asia' },
+    { code:'vi',   flag:'🇻🇳', name:'Vietnamese',           native:'Tiếng Việt',       group:'Asia' },
+    { code:'id',   flag:'🇮🇩', name:'Indonesian',           native:'Bahasa Indonesia', group:'Asia' },
+    { code:'ms',   flag:'🇲🇾', name:'Malay',                native:'Bahasa Melayu',    group:'Asia' },
+    { code:'tl',   flag:'🇵🇭', name:'Filipino (Tagalog)',   native:'Filipino',         group:'Asia' },
+    { code:'my',   flag:'🇲🇲', name:'Burmese',              native:'မြန်မာဘာသာ',       group:'Asia' },
+    { code:'ne',   flag:'🇳🇵', name:'Nepali',               native:'नेपाली',            group:'Asia' },
+    { code:'ta',   flag:'🇮🇳', name:'Tamil',                native:'தமிழ்',            group:'Asia' },
+    { code:'te',   flag:'🇮🇳', name:'Telugu',               native:'తెలుగు',           group:'Asia' },
+    { code:'ml',   flag:'🇮🇳', name:'Malayalam',            native:'മലയാളം',           group:'Asia' },
+    { code:'gu',   flag:'🇮🇳', name:'Gujarati',             native:'ગુજરાતી',          group:'Asia' },
+    { code:'pa',   flag:'🇮🇳', name:'Punjabi',              native:'ਪੰਜਾਬੀ',           group:'Asia' },
+    { code:'uz',   flag:'🇺🇿', name:'Uzbek',                native:"O'zbek",           group:'Asia' },
+    { code:'kk',   flag:'🇰🇿', name:'Kazakh',               native:'Қазақ',            group:'Asia' },
+    { code:'az',   flag:'🇦🇿', name:'Azerbaijani',          native:'Azərbaycan',       group:'Asia' },
+    { code:'hy',   flag:'🇦🇲', name:'Armenian',             native:'Հայերեն',          group:'Asia' },
+    { code:'ka',   flag:'🇬🇪', name:'Georgian',             native:'ქართული',          group:'Asia' },
+    { code:'he',   flag:'🇮🇱', name:'Hebrew',               native:'עברית',            group:'Asia' },
+    { code:'zh-TW',flag:'🇹🇼', name:'Chinese (Traditional)',native:'中文(繁體)',         group:'Asia' },
+    { code:'sw',   flag:'🇹🇿', name:'Swahili',              native:'Kiswahili',        group:'Africa' },
+    { code:'yo',   flag:'🇳🇬', name:'Yoruba',               native:'Yorùbá',           group:'Africa' },
+    { code:'ig',   flag:'🇳🇬', name:'Igbo',                 native:'Igbo',             group:'Africa' },
+    { code:'ha',   flag:'🇳🇬', name:'Hausa',                native:'Hausa',            group:'Africa' },
+    { code:'am',   flag:'🇪🇹', name:'Amharic',              native:'አማርኛ',            group:'Africa' },
+    { code:'so',   flag:'🇸🇴', name:'Somali',               native:'Soomaali',         group:'Africa' },
+    { code:'zu',   flag:'🇿🇦', name:'Zulu',                 native:'isiZulu',          group:'Africa' },
+    { code:'xh',   flag:'🇿🇦', name:'Xhosa',                native:'isiXhosa',         group:'Africa' },
+    { code:'ht',   flag:'🇭🇹', name:'Haitian Creole',       native:'Kreyòl ayisyen',   group:'Americas' },
+  ];
+
+  var tkCurrentLang  = { code:'en', flag:'🇬🇧', name:'English' };
+  var tkTransCache   = {};
+  var tkOrigTexts    = null;
+
+  /* ── Build dropdown HTML ── */
+  (function buildDropdown() {
+    var dd = document.getElementById('tkLangDropdown');
+    var groups = {};
+    TK_LANGUAGES.forEach(function(l) {
+      if (!groups[l.group]) groups[l.group] = [];
+      groups[l.group].push(l);
+    });
+    var order = ['Common','Europe','Asia','Africa','Americas'];
+    var html = '';
+    order.forEach(function(g) {
+      if (!groups[g]) return;
+      html += '<div class="lang-group-label" data-grp="' + g + '">' + g + '</div>';
+      groups[g].forEach(function(l) {
+        html += '<div class="lang-option' + (l.code==='en'?' selected':'') + '" '
+              + 'data-code="' + l.code + '" data-name="' + l.name + '" data-flag="' + l.flag + '" '
+              + 'onclick="tkSelectLang(this)" role="option" aria-selected="' + (l.code==='en') + '">'
+              + '<span class="lang-opt-flag">' + l.flag + '</span>'
+              + '<span class="lang-opt-name">' + l.name + '</span>'
+              + '<span class="lang-opt-native">' + l.native + '</span>'
+              + '</div>';
+      });
+    });
+    dd.insertAdjacentHTML('beforeend', html);
+  })();
+
+  function tkToggleLang() {
+    var sel = document.getElementById('tkLangSelector');
+    var trigger = document.getElementById('tkLangTrigger');
+    var isOpen = sel.classList.contains('open');
+    sel.classList.toggle('open', !isOpen);
+    trigger.setAttribute('aria-expanded', !isOpen);
+    if (!isOpen) {
+      var input = sel.querySelector('.lang-search');
+      if (input) setTimeout(function(){ input.focus(); }, 80);
+    }
+  }
+
+  function tkFilterLangs(input) {
+    var q = input.value.toLowerCase();
+    var dd = document.getElementById('tkLangDropdown');
+    dd.querySelectorAll('.lang-option').forEach(function(opt) {
+      var name = (opt.dataset.name||'').toLowerCase();
+      var native = (opt.querySelector('.lang-opt-native')||{}).textContent||'';
+      opt.style.display = (!q || name.includes(q) || native.toLowerCase().includes(q)) ? '' : 'none';
+    });
+  }
+
+  function tkSelectLang(el) {
+    var code = el.dataset.code, name = el.dataset.name, flag = el.dataset.flag;
+    document.getElementById('tkLangFlag').textContent = flag;
+    document.getElementById('tkLangName').textContent = name;
+    var dd = document.getElementById('tkLangDropdown');
+    dd.querySelectorAll('.lang-option').forEach(function(opt) {
+      opt.classList.toggle('selected', opt.dataset.code === code);
+      opt.setAttribute('aria-selected', opt.dataset.code === code);
+    });
+    document.getElementById('tkLangSelector').classList.remove('open');
+    tkCurrentLang = { code:code, flag:flag, name:name };
+    if (code === 'en') { tkResetLang(); return; }
+    tkTranslatePage(code, name);
+  }
+
+  /* ── Text node walker ── */
+  function tkGetTextNodes(root) {
+    var nodes = [];
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(node) {
+        var tag = node.parentNode ? node.parentNode.tagName : '';
+        if (['SCRIPT','STYLE','NOSCRIPT','INPUT','TEXTAREA'].indexOf(tag) !== -1) return NodeFilter.FILTER_REJECT;
+        if (node.parentNode && node.parentNode.closest) {
+          if (node.parentNode.closest('.lang-selector')) return NodeFilter.FILTER_REJECT;
+          if (node.parentNode.closest('.translate-banner')) return NodeFilter.FILTER_REJECT;
+          if (node.parentNode.closest('.tk-topbar')) return NodeFilter.FILTER_REJECT;
+        }
+        if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var n;
+    while (n = walker.nextNode()) nodes.push(n);
+    return nodes;
+  }
+
+  function tkSaveOriginals() {
+    if (tkOrigTexts) return;
+    tkOrigTexts = {};
+    tkGetTextNodes(document.body).forEach(function(node, i) {
+      node._tkid = i;
+      tkOrigTexts[i] = node.nodeValue;
+    });
+  }
+
+  function tkResetLang() {
+    if (!tkOrigTexts) return;
+    tkGetTextNodes(document.body).forEach(function(node) {
+      if (node._tkid !== undefined && tkOrigTexts[node._tkid] !== undefined) {
+        node.nodeValue = tkOrigTexts[node._tkid];
+      }
+    });
+    document.getElementById('tkTranslateBanner').classList.remove('visible');
+    document.getElementById('tkLangFlag').textContent = '🇬🇧';
+    document.getElementById('tkLangName').textContent = 'English';
+    document.getElementById('tkLangDropdown').querySelectorAll('.lang-option').forEach(function(opt) {
+      opt.classList.toggle('selected', opt.dataset.code === 'en');
+    });
+    document.documentElement.dir = 'ltr';
+    tkCurrentLang = { code:'en', flag:'🇬🇧', name:'English' };
+  }
+
+  function tkTranslatePage(langCode, langName) {
+    tkSaveOriginals();
+    document.getElementById('tkTranslateBannerLang').textContent = langName;
+    document.getElementById('tkTranslateBanner').classList.add('visible');
+
+    var nodes = tkGetTextNodes(document.body);
+    var unique = [], seen = {};
+    nodes.forEach(function(n) {
+      var t = n.nodeValue.trim();
+      if (t && !seen[t]) { seen[t] = true; unique.push(t); }
+    });
+
+    if (tkTransCache[langCode]) {
+      tkApplyTranslations(nodes, tkTransCache[langCode], langCode);
+      return;
+    }
+
+    var translations = {}, pending = unique.slice();
+
+    function nextBatch() {
+      if (!pending.length) {
+        tkTransCache[langCode] = translations;
+        tkApplyTranslations(nodes, translations, langCode);
+        return;
+      }
+      var batch = pending.splice(0, 8);
+      var promises = batch.map(function(text) {
+        if (text.length < 3 || /^\d+$/.test(text)) return Promise.resolve({ text:text, translated:text });
+        var url = 'https://api.mymemory.translated.net/get?q=' + encodeURIComponent(text)
+                + '&langpair=en|' + langCode
+                + '&de=airjakedeliveryservices@gmail.com';
+        return fetch(url)
+          .then(function(r){ return r.json(); })
+          .then(function(d){
+            var t = d.responseData && d.responseData.translatedText ? d.responseData.translatedText : text;
+            return { text:text, translated:t };
+          })
+          .catch(function(){ return { text:text, translated:text }; });
+      });
+      Promise.all(promises).then(function(results) {
+        results.forEach(function(r){ translations[r.text] = r.translated; });
+        setTimeout(nextBatch, 120);
+      });
+    }
+    nextBatch();
+  }
+
+  function tkApplyTranslations(nodes, translations, langCode) {
+    var rtl = ['ar','he','fa','ur'];
+    document.documentElement.dir = rtl.indexOf(langCode) !== -1 ? 'rtl' : 'ltr';
+    nodes.forEach(function(node) {
+      var t = node.nodeValue.trim();
+      if (translations[t]) node.nodeValue = translations[t];
+    });
+  }
+
+  /* Close on outside click */
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.lang-selector')) {
+      var sel = document.getElementById('tkLangSelector');
+      if (sel) sel.classList.remove('open');
+    }
+  });
+
+  /* Close on Escape */
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      var sel = document.getElementById('tkLangSelector');
+      if (sel && sel.classList.contains('open')) {
+        sel.classList.remove('open');
+        document.getElementById('tkLangTrigger').focus();
+      }
+    }
+  });
+
+    /* ── Leaflet Map (commented out in original — preserved as-is) ── */
+    document.addEventListener('DOMContentLoaded', function () {
+      var mapEl = document.getElementById('manifest-map');
+      if (!mapEl) return;
+
       var map = L.map('manifest-map', {
         center: [14.599512, 120.984222],
         zoom: 6,
@@ -968,32 +1358,11 @@
         maxZoom: 19
       }).addTo(map);
 
-      /* Custom marker HTML */
-      var markerHtml = `
-        <div style="position:relative; width:40px; height:40px; display:flex; align-items:center; justify-content:center;">
-          <div style="
-            position:absolute;
-            width:40px; height:40px;
-            border-radius:50%;
-            background:rgba(217,119,6,0.2);
-            animation: mapPing 1.8s ease-out infinite;
-          "></div>
-          <div style="
-            position:relative;
-            width:20px; height:20px;
-            border-radius:50%;
-            background:#D97706;
-            border: 3px solid #fff;
-            box-shadow: 0 2px 10px rgba(217,119,6,0.5);
-          "></div>
-        </div>
-        <style>
-          @keyframes mapPing {
-            0%{ transform:scale(.6); opacity:.9; }
-            100%{ transform:scale(2.2); opacity:0; }
-          }
-        </style>
-      `;
+      var markerHtml = '<div style="position:relative;width:40px;height:40px;display:flex;align-items:center;justify-content:center;">'
+        + '<div style="position:absolute;width:40px;height:40px;border-radius:50%;background:rgba(217,119,6,0.2);animation:mapPing 1.8s ease-out infinite;"></div>'
+        + '<div style="position:relative;width:20px;height:20px;border-radius:50%;background:#D97706;border:3px solid #fff;box-shadow:0 2px 10px rgba(217,119,6,0.5);"></div>'
+        + '</div>'
+        + '<style>@keyframes mapPing{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.2);opacity:0}}</style>';
 
       var customIcon = L.divIcon({
         className: '',
@@ -1003,24 +1372,18 @@
         popupAnchor: [0, -24]
       });
 
-      var popupContent = `
-        <div class="map-popup">
-          <div class="map-popup-label">Vector Lock Point</div>
-          <div class="map-popup-title">Manila Customs Terminal</div>
-          <div class="map-popup-status">
-            <span style="width:5px;height:5px;border-radius:50%;background:#D97706;display:inline-block;"></span>
-            Custom Hold Active
-          </div>
-        </div>
-      `;
+      var popupContent = '<div class="map-popup">'
+        + '<div class="map-popup-label">Vector Lock Point</div>'
+        + '<div class="map-popup-title">Manila Customs Terminal</div>'
+        + '<div class="map-popup-status"><span style="width:5px;height:5px;border-radius:50%;background:#D97706;display:inline-block;"></span> Custom Hold Active</div>'
+        + '</div>';
 
       L.marker([14.599512, 120.984222], { icon: customIcon })
         .addTo(map)
         .bindPopup(popupContent, { maxWidth: 220, minWidth: 180 })
         .openPopup();
 
-      /* Fix map rendering after layout settles */
-      setTimeout(function () { map.invalidateSize(); }, 300);
+      setTimeout(function(){ map.invalidateSize(); }, 300);
     });
   </script>
 
