@@ -89,7 +89,7 @@
                         <select name="status" class="w-full bg-slate-950 border rounded-xl p-3 text-white appearance-none focus:outline-none focus:border-brand-red text-xs font-medium transition cursor-pointer">
                
                    <?php
-                   $allItems  = ['Order Picked Up', 'In Transit', 'Custom Hold', 'Delivered'];
+                   $allItems  = ['In Transit', 'Custom Hold', 'Delivered'];
                        $usedItems = $parcel->logs->pluck('status')->toArray();
                        $excluded  = array_diff($allItems, $usedItems);
                        ?>
@@ -134,7 +134,7 @@
                     <div>
                         <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1.5 tracking-wider">Geo Latitude Coordinate</label>
                         <input type="text" name="latitude" value="{{ old('latitude', $parcel->latitude) }}" placeholder="e.g. 6.5244"
-                               class="w-full bg-slate-950 border @error('latitude') border-brand-red @else border-slate-700 @enderror rounded-xl p-3 text-white focus:outline-none focus:border-brand-red text-xs font-mono transition">
+                               class="w-full bg-slate-950 border @error('latitude') border-brand-red @else border-slate-700 @enderror rounded-xl p-3 text-white focus:outline-none focus:border-brand-red text-xs font-mono transition" required>
                         @error('latitude')
                             <p class="text-brand-red font-medium text-[11px] mt-1"><i class="fa-solid fa-circle-exclamation mr-1"></i> {{ $message }}</p>
                         @enderror
@@ -144,7 +144,7 @@
                     <div>
                         <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1.5 tracking-wider">Geo Longitude Coordinate</label>
                         <input type="text" name="longitude" value="{{ old('longitude', $parcel->longitude) }}" placeholder="e.g. 3.3792"
-                               class="w-full bg-slate-950 border @error('longitude') border-brand-red @else border-slate-700 @enderror rounded-xl p-3 text-white focus:outline-none focus:border-brand-red text-xs font-mono transition">
+                               class="w-full bg-slate-950 border @error('longitude') border-brand-red @else border-slate-700 @enderror rounded-xl p-3 text-white focus:outline-none focus:border-brand-red text-xs font-mono transition" required>
                         @error('longitude')
                             <p class="text-brand-red font-medium text-[11px] mt-1"><i class="fa-solid fa-circle-exclamation mr-1"></i> {{ $message }}</p>
                         @enderror

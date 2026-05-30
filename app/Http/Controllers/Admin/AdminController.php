@@ -120,7 +120,7 @@ class AdminController extends Controller
     public function update(Request $request, Parcel $parcel) {
 
         // return $request->all();
-        $available = ParcelLog::where(['parcel_id'=> $request['parcel_id'], 'status'=>$request->status])->first();
+        $available = ParcelLog::where(['parcel_id'=> $request['parcel_id'], 'status'=>$request->status])->get();
         if(empty($available->id)){
         $request->validate([
             'status' => 'required|string',

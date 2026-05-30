@@ -926,10 +926,7 @@
           </div>
           <div class="tk-step-name">Picked by<br>Courier</div>
           <div class="tk-step-date">
-            @php
-              $transitLog = $parcel->logs->firstWhere('status', 'Order Picked Up');
-            @endphp
-            {{ $transitLog ? $transitLog->created_at->format('M d, Y') : 'Pending' }}
+            {{$parcel->created_at->format('M d, Y')}}
           </div>
         </div>
 
@@ -940,7 +937,7 @@
           <div class="tk-step-name">On the<br>Way</div>
           <div class="tk-step-date">
             @php
-              $transitLog = $parcel->logs->firstWhere('status', 'Order Picked Up');
+              $transitLog = $parcel->logs->firstWhere('status', 'In Transit');
             @endphp
             {{ $transitLog ? $transitLog->created_at->format('M d, Y') : 'Pending' }}
           </div>

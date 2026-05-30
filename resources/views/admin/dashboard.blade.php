@@ -832,11 +832,11 @@
                     </div>
                     <div class="field">
                       <label>Latitude</label>
-                      <input type="number" name="latitude" class="mono">
+                      <input type="text" name="latitude" class="mono" required>
                     </div>
                     <div class="field">
                       <label>Longitude</label>
-                      <input type="number" name="longitude" class="mono" >
+                      <input type="text" name="longitude" class="mono" required>
                     </div>
                   </div>
                 </div>
