@@ -780,6 +780,9 @@
         // ── Americas ────────────────────────────────
         { code:'ht',  flag:'🇭🇹', name:'Haitian Creole',      native:'Kreyòl ayisyen',     group:'Americas' },
         { code:'qu',  flag:'🇵🇪', name:'Quechua',             native:'Runasimi',           group:'Americas' },
+         { code: 'ar-YE', flag: 'YE', name: 'Yemen',       native: 'اليمن',      group: 'Asia' },
+   { code: 'ar-SY', flag: 'SY', name: 'Syria',       native: 'سوريا',      group: 'Asia' },
+   { code: 'ps',    flag: 'AF', name: 'Afghanistan', native: 'افغانستان',  group: 'Asia'        },
     ];
 
     var currentLang = { code:'en', flag:'🇬🇧', name:'English' };

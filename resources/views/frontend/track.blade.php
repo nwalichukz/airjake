@@ -1151,8 +1151,8 @@
     { code:'zu',   flag:'🇿🇦', name:'Zulu',                 native:'isiZulu',          group:'Africa' },
     { code:'xh',   flag:'🇿🇦', name:'Xhosa',                native:'isiXhosa',         group:'Africa' },
     { code:'ht',   flag:'🇭🇹', name:'Haitian Creole',       native:'Kreyòl ayisyen',   group:'Americas' },
-    { code: 'ar-YE', flag: 'YE', name: 'Yemen',       native: 'اليمن',      group: 'Middle East' },
-   { code: 'ar-SY', flag: 'SY', name: 'Syria',       native: 'سوريا',      group: 'Middle East' },
+    { code: 'ar-YE', flag: 'YE', name: 'Yemen',       native: 'اليمن',      group: 'Asia' },
+   { code: 'ar-SY', flag: 'SY', name: 'Syria',       native: 'سوريا',      group: 'Asia' },
    { code: 'ps',    flag: 'AF', name: 'Afghanistan', native: 'افغانستان',  group: 'Asia'        },
   ];
 
