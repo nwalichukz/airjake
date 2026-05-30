@@ -121,7 +121,7 @@ class AdminController extends Controller
 
         // return $request->all();
         $available = ParcelLog::where(['parcel_id'=> $request['parcel_id'], 'status'=>$request->status])->first();
-        if(!empty($available->id)){
+        if(empty($available->id)){
         $request->validate([
             'status' => 'required|string',
             'current_location' => 'required|string',
@@ -130,7 +130,15 @@ class AdminController extends Controller
             'status_description' => 'nullable|string'
         ]);
 
-        $parcel->update($request->only(['status', 'current_location', 'latitude', 'longitude', 'status_description']));
+        $update = Parcel::findOrFail($request['parcel_id']);
+        $update->status=$request->status;
+        $update->current_location=$request->current_location;
+        $update->longitude =$request->longitude;
+        $update->latitude =$request->latitude;
+        $update->status_description=$request->status_description;
+        $update->save();
+
+        //$parcel->update($request->only(['status', 'current_location', 'latitude', 'longitude', 'status_description']));
 
         ParcelLog::create([
             'parcel_id' => $request->parcel_id,
